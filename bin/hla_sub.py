@@ -19,7 +19,7 @@ data_file = sys.argv[1]
 if len(sys.argv) == 2:
     output_file = str(data_file).replace(".xlsx", ".assimilated.xlsx")
 else:
-    output_file = sys.argv[2]
+    output_file = '../results/' + sys.argv[2]
 
 
 rules_file = '../data/HLA_rules.xlsx'
