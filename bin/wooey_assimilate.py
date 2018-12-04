@@ -21,12 +21,7 @@ parser.add_argument('output', help='output file file name to be generated')
 args = parser.parse_args()
 
 input_file = '/mnt/storage/home/toutoua/projects/tt/NIHR_Assimilator/NIHR_Assimilator/user_uploads/wooey_files/a9/7a/a9d37b514c336c0f302cc740bd75bbb52f59cb7a/MAIN_DATA_copy.xlsx'
-<<<<<<< HEAD
-=======
 
-#print (input_file)
-
->>>>>>> 385fd98a6ff518c2809ab1920ce33bcfdcd2ad0a
 output_file = args.output
 
 data = pd.read_excel(input_file, "Main data")
@@ -234,10 +229,5 @@ for c_pat in column_patterns:
 print(data)
 # save file into a different excel file
 writer = pd.ExcelWriter(output_file, engine = 'xlsxwriter')
-
 data.to_excel(writer,sheet_name='Main data')
-<<<<<<< HEAD
 writer.save()
-=======
-writer.save()
->>>>>>> 385fd98a6ff518c2809ab1920ce33bcfdcd2ad0a
