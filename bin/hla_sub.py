@@ -18,8 +18,6 @@ data_file = sys.argv[1]
 
 if len(sys.argv) == 2:
     output_file = str(data_file).replace(".xlsx", ".assimilated.xlsx")
-
-
 else:
     output_file = sys.argv[2]
 
@@ -36,10 +34,12 @@ data = pd.read_excel(data_file, "Main data")
 #A_HR = (rules.loc[:20,'Assimilation']).tolist()
 
 
-# fill_split function iterates through the columns containing the HLA data and fills the split column 
-# with the equivalent broad if empty
+# fill_split function
 
 def fill_split(patient):
+    """iterates through the columns containing the HLA data and
+    fills the split column with the equivalent broad if empty"""
+
     gene_list= ["A","B","C","DR","DP","DQ"]
     for gene in gene_list:
         for column in data.columns:
@@ -98,6 +98,9 @@ for column in data.columns:
 
 
 def fill_hom(patient, gene):
+    """Assuming when only one allele present it is homozygous
+    so this function fills in the equivalent homozygous allele"""
+
     first = 'HR_' + patient + '_First_'+ gene + '_Split'
     second =  'HR_' + patient + '_Second_'+ gene + '_Split'
 
@@ -128,12 +131,13 @@ for column in data.columns:
 
 
 # special Cw/B pairing replacement
-# Function that replaces Cw alleles based on the B allele correlation
 
 
 rows = data.shape[0]
 
 def c_assimilation(to_replace, general_rule, exc1, exc2=(None, None),exc3=(None, None)):
+    """replaces Cw alleles based on the B allele correlation"""
+
     for patient in ['Recip', 'Donor']:
         for variable in ['First', 'Second']:
             #rows = data.shape[0]
@@ -193,21 +197,26 @@ for c_pat in column_patterns:
             new_dq_column = 'HR_' + c_pat + '_DQA'
             data.insert((col_index + 1), new_dq_column, np.nan)
 
-rules = pd.read_excel('classII_rules.xlsx')
+
 
 # create a list containing all class II rules
 
+def parse_rules(rules_file):
+    """parses rules from excel into functional lists"""
+    rules = pd.read_excel(rules_file)
+    classII = []
+    rule_rows = rules.shape[0]
+    for row in range(rule_rows):
+        row_sublist = []
+        for column in rules.columns:
+            row_sublist.append(rules.loc[row][column])
+        classII.append(row_sublist)
 
-classII = []
-rule_rows = rules.shape[0]
-for row in range(rule_rows):
-    row_sublist = []
-    for column in rules.columns:
-        row_sublist.append(rules.loc[row][column])
-    classII.append(row_sublist)
+    for item in classII:
+        print(item)
 
-for item in classII:
-    print(item)
+    return classII
+
 
 ''''
 for c_pat in column_patterns:
