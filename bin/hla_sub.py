@@ -22,7 +22,7 @@ else:
     output_file = sys.argv[2]
 
 
-rules_file = './HLA_rules.xlsx'
+rules_file = '../data/HLA_rules.xlsx'
 
 
 data = pd.read_excel(data_file, "Main data")
