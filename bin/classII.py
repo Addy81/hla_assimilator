@@ -100,3 +100,62 @@ for row in range(rows):
     if count1 > 1 and count2 < 2:
         data.loc[row, "HR_Recip_First_DR_Split"] = DR2
         data.loc[row, "HR_Recip_Second_DR_Split"] = DR1
+
+# USe it when we are back in normal dataset
+def add_sub_column(patient):
+    """Adds column to store substitution codes"""
+
+    pattern = patient + "_First_DR_Broad"
+    for column in data.columns:
+        column_match = re.match(pattern,column)
+        col_index = data.columns.get_loc(pattern)
+        if column_match:
+            new_column = patient + "_First_Sub"
+            new_column2 = patient + "_Second_Sub"
+            data.insert(col_index, new_column,np.nan)
+            data.insert(col_index+6, new_column2, np.nan)
+
+add_sub_column("Recip")
+
+#print (data.columns)
+
+for row in range(rows):
+    DR1 = data.loc[row, "HR_Recip_First_DR_Split"]
+    DR2 = data.loc[row, "HR_Recip_Second_DR_Split"]
+    DQ1 = data.loc[row, "HR_Recip_First_DQ_Split"]
+    DQ2 = data.loc[row, "HR_Recip_Second_DQ_Split"]
+    first_sub = "Recip_First_Sub"
+    second_sub = "Recip_Second_Sub"
+
+    dq_options = [DQ1,DQ2]
+
+    while len(dq_options) > 0:
+        if dq_options[0] in options.get(DR1):
+            # print (dq_options[0], "-->", DR1)
+            for rule in classII:
+                if rule[1] == DR1 and rule[5] == DQ1:
+                    # print (rule[1],rule[5])
+                    data.loc[row, first_sub] = "a" + str(rule[0])
+                    del dq_options[0]
+                    break
+            if dq_options[0] in options.get(DR2):
+                for rule in classII:
+                    if rule[1] == DR2 and rule[5] == DQ2:
+                        data.loc[row,second_sub] = "a" + str(rule[0])
+                        del dq_options[0]
+        elif dq_options[1] in options.get(DR1):
+            for rule in classII:
+                if rule[1] == DR1 and rule[5] == DQ2:
+                    data.loc[row, first_sub] = "b" + str(rule[0])
+                    del dq_options[1]
+                    break
+            if dq_options[0] in options.get(DR2):
+                for rule in classII:
+                    if rule[1] == DR2 and rule[5] == DQ1:
+                        data.loc[row, second_sub] = "b" + str(rule[0])
+                        del dq_options[0]
+
+
+print (data["Recip_First_Sub"])
+
+

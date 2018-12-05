@@ -12,7 +12,7 @@ import sys
 import numpy as np
 
 
-data = pd.read_excel('classII_only.xlsx')
+data = pd.read_excel('.../bin/classII_only.xlsx')
 
 rows = data.shape[0]
 
@@ -35,7 +35,7 @@ options = {
     }
 
 
-rules = pd.read_excel('classII_rules.xlsx')
+rules = pd.read_excel('../data/classII_rules.xlsx')
 
 # create a list containing all class II rules
 
