@@ -119,6 +119,8 @@ add_sub_column("Recip")
 
 #print (data.columns)
 
+dq_splits = ["DQ2","DQ4","DQ5","DQ6","DQ7","DQ8","DQ9"]
+
 for row in range(rows):
     DR1 = data.loc[row, "HR_Recip_First_DR_Split"]
     DR2 = data.loc[row, "HR_Recip_Second_DR_Split"]
@@ -127,10 +129,39 @@ for row in range(rows):
     first_sub = "Recip_First_Sub"
     second_sub = "Recip_Second_Sub"
 
-    dq_options = [DQ1,DQ2]
+
+    dq_options = []
+
+    if DQ1 in dq_splits:
+        dq_options.append
+
+    if DR1 in options.keys():
+        pass
+    else:
+        print (DR1, " First DR doesn't exist in the options")
+
+    if DR2 in options.keys():
+        pass
+    else:
+        print (DR2, "Second DR doesn't exist in the options")
+
+
+
+    """
+    print (dq_options, type(dq_options))
+
+    #print ("DQ5" in options.values())
+
 
     while len(dq_options) > 0:
-        if dq_options[0] in options.get(DR1):
+        #print (dq_options[0])
+
+        if dq_options[0] not in options.get(DR1):
+            del dq_options[0]
+            break
+        elif DR1 not in options.keys():
+            break
+        elif dq_options[0] in options.get(DR1):
             # print (dq_options[0], "-->", DR1)
             for rule in classII:
                 if rule[1] == DR1 and rule[5] == DQ1:
@@ -138,7 +169,12 @@ for row in range(rows):
                     data.loc[row, first_sub] = "a" + str(rule[0])
                     del dq_options[0]
                     break
-            if dq_options[0] in options.get(DR2):
+            if DR2 not in options.keys():
+                continue
+            elif dq_options[0] not in options.get(DR2):
+                del dq_options[0]
+                break
+            elif dq_options[0] in options.get(DR2):
                 for rule in classII:
                     if rule[1] == DR2 and rule[5] == DQ2:
                         data.loc[row,second_sub] = "a" + str(rule[0])
@@ -149,13 +185,17 @@ for row in range(rows):
                     data.loc[row, first_sub] = "b" + str(rule[0])
                     del dq_options[1]
                     break
-            if dq_options[0] in options.get(DR2):
+            if DR2 not in options.get(DR2):
+                continue
+            elif dq_options[0] in options.get(DR2):
                 for rule in classII:
                     if rule[1] == DR2 and rule[5] == DQ1:
                         data.loc[row, second_sub] = "b" + str(rule[0])
                         del dq_options[0]
 
+        print(data.loc[row, "Recip_First_Sub"], data.loc[row,"Recip_Second_Sub"])
 
-print (data["Recip_First_Sub"])
+print (data["Recip_First_Sub"], data["Recip_Second_Sub"])
 
 
+"""

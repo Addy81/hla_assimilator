@@ -12,7 +12,7 @@ import sys
 import numpy as np
 
 
-data = pd.read_excel('.../bin/classII_only.xlsx')
+data = pd.read_excel('../data/classII_only.xlsx')
 
 rows = data.shape[0]
 
