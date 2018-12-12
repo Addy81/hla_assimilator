@@ -221,7 +221,7 @@ for c_pat in column_patterns:
         dq = data.loc[row, dq_col]
 
         for rule in classII:
-            if pd.isnull(data.loc[row, dr_col]):
+            if pd.isnull(data.loc[row, dr_col])
                 pass
             elif dr == rule[0] and dq == rule[4]:
 
