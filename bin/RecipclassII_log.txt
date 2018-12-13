@@ -1,0 +1,237 @@
+4: DR alleles splits are missing
+6: DQ alleles splits are missing
+7: DR alleles splits are missing
+15: DR alleles splits are missing
+25: DR alleles splits are missing
+36: DR alleles splits are missing
+38: options dont work 
+40: DQ alleles missing
+46: DR alleles splits are missing
+54: options dont work 
+59: DQ alleles splits are missing
+70: DR alleles splits are missing
+84: options dont work 
+85: DQ alleles splits are missing
+86: options dont work 
+95: DQ alleles splits are missing
+98: options dont work 
+100: DQ alleles splits are missing
+108: DQ alleles missing
+109: DR alleles splits are missing
+114: DQ alleles splits are missing
+134: DQ alleles missing
+144: DQ alleles splits are missing
+148: DR alleles splits are missing
+152: options dont work 
+166: options dont work 
+168: DQ alleles missing
+171: options dont work 
+173: DQ alleles missing
+178: DQ alleles splits are missing
+180: DR alleles splits are missing
+187: DQ alleles splits are missing
+193: DQ alleles missing
+197: DR alleles splits are missing
+201: DQ alleles splits are missing
+217: DR alleles splits are missing
+227: DR alleles splits are missing
+269: DQ alleles missing
+277: DR alleles splits are missing
+287: DR alleles splits are missing
+291: DR alleles splits are missing
+294: DR alleles splits are missing
+295: DQ alleles missing
+296: DQ alleles missing
+313: DR alleles splits are missing
+315: DR alleles splits are missing
+328: DR alleles splits are missing
+333: DQ alleles splits are missing
+347: DQ alleles splits are missing
+359: DR alleles splits are missing
+380: DQ alleles missing
+384: DR alleles splits are missing
+408: DQ alleles missing
+411: options dont work 
+422: DQ alleles missing
+424: DR alleles splits are missing
+426: DR alleles splits are missing
+430: DR alleles splits are missing
+432: options dont work 
+433: DR alleles splits are missing
+440: options dont work 
+442: DQ alleles missing
+452: options dont work 
+468: options dont work 
+474: DR alleles splits are missing
+496: DQ alleles splits are missing
+557: options dont work 
+581: DR alleles splits are missing
+591: options dont work 
+597: DR alleles splits are missing
+609: DR alleles splits are missing
+612: DR alleles splits are missing
+614: DR alleles splits are missing
+615: DR alleles splits are missing
+620: options dont work 
+629: DR alleles splits are missing
+642: options dont work 
+644: DQ alleles splits are missing
+653: DR alleles splits are missing
+673: DR alleles splits are missing
+682: DQ alleles missing
+691: DR alleles splits are missing
+693: options dont work 
+694: DQ alleles missing
+702: options dont work 
+717: DQ alleles missing
+722: DQ alleles splits are missing
+733: DR alleles splits are missing
+755: DR alleles splits are missing
+769: DQ alleles splits are missing
+776: DR alleles splits are missing
+789: options dont work 
+798: DR alleles splits are missing
+811: options dont work 
+842: DR alleles splits are missing
+877: DQ alleles splits are missing
+880: options dont work 
+886: DQ alleles missing
+922: DQ alleles splits are missing
+928: DR alleles splits are missing
+951: DR alleles splits are missing
+972: DQ alleles splits are missing
+980: options dont work 
+1002: DR alleles splits are missing
+1009: DR alleles splits are missing
+1017: DQ alleles splits are missing
+1040: DQ alleles splits are missing
+1043: DR alleles splits are missing
+1045: DR alleles splits are missing
+1067: DR alleles splits are missing
+1074: DR alleles splits are missing
+1077: DR alleles splits are missing
+1081: DR alleles splits are missing
+1087: DR alleles splits are missing
+1111: DR alleles splits are missing
+1145: DR alleles splits are missing
+1154: options dont work 
+1162: options dont work 
+1173: DR alleles splits are missing
+1181: DR alleles splits are missing
+1189: DR alleles splits are missing
+1190: DR alleles splits are missing
+1198: DR alleles splits are missing
+1201: DR alleles splits are missing
+1208: DR alleles splits are missing
+1222: options dont work 
+1237: options dont work 
+1274: DQ alleles missing
+1295: DR alleles splits are missing
+1319: DQ alleles splits are missing
+1348: options dont work 
+1361: DR alleles splits are missing
+1383: DR alleles splits are missing
+1389: DR alleles splits are missing
+1411: options dont work 
+1412: DR alleles splits are missing
+1417: options dont work 
+1418: options dont work 
+1419: DR alleles splits are missing
+1455: options dont work 
+1456: DR alleles splits are missing
+1467: options dont work 
+1480: DR alleles splits are missing
+1513: options dont work 
+1524: options dont work 
+1533: DQ alleles splits are missing
+1567: options dont work 
+1578: DR alleles splits are missing
+1587: DR alleles splits are missing
+1589: DR alleles splits are missing
+1599: DR alleles splits are missing
+1603: DR alleles splits are missing
+1607: options dont work 
+1610: DR alleles splits are missing
+1626: DR alleles splits are missing
+1643: DR alleles splits are missing
+1649: DR alleles splits are missing
+1656: DR alleles splits are missing
+1659: options dont work 
+1671: DR alleles splits are missing
+1676: DR alleles splits are missing
+1686: options dont work 
+1692: DR alleles splits are missing
+1697: options dont work 
+1705: DR alleles splits are missing
+1729: DR alleles splits are missing
+1749: DR alleles splits are missing
+1777: DR alleles splits are missing
+1788: DR alleles splits are missing
+1802: options dont work 
+1822: options dont work 
+1832: DR alleles splits are missing
+1839: DQ alleles splits are missing
+1858: options dont work 
+1874: DR alleles splits are missing
+1909: DR alleles splits are missing
+1933: DR alleles splits are missing
+1954: DR alleles splits are missing
+1965: DR alleles splits are missing
+1969: DR alleles splits are missing
+1970: DR alleles splits are missing
+2002: options dont work 
+2010: options dont work 
+2021: DR alleles splits are missing
+2038: DR alleles splits are missing
+2044: DR alleles splits are missing
+2059: options dont work 
+2092: DR alleles splits are missing
+2132: DR alleles splits are missing
+2144: DR alleles splits are missing
+2157: options dont work 
+2159: DR alleles splits are missing
+2201: DR alleles splits are missing
+2209: options dont work 
+2217: options dont work 
+2250: DR alleles splits are missing
+2265: options dont work 
+2266: options dont work 
+2276: DR alleles splits are missing
+2277: DR alleles splits are missing
+2289: DR alleles splits are missing
+2297: DR alleles splits are missing
+2314: DR alleles splits are missing
+2328: DR alleles splits are missing
+2339: DQ alleles splits are missing
+2349: DR alleles splits are missing
+2357: options dont work 
+2377: options dont work 
+2400: options dont work 
+2443: DR alleles splits are missing
+2456: options dont work 
+2487: DR alleles splits are missing
+2499: options dont work 
+2522: options dont work 
+2529: options dont work 
+2555: options dont work 
+2556: options dont work 
+2559: DR alleles splits are missing
+2580: options dont work 
+2602: options dont work 
+2666: DR alleles splits are missing
+2677: options dont work 
+2678: options dont work 
+2683: DR alleles splits are missing
+2693: options dont work 
+2698: options dont work 
+2717: options dont work 
+2730: DR alleles splits are missing
+2740: DR alleles splits are missing
+2752: options dont work 
+2778: options dont work 
+2782: options dont work 
+2784: options dont work 
+2811: DR alleles splits are missing
+2836: options dont work 
+2843: options dont work 
+2859: options dont work 

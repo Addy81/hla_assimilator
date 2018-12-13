@@ -1,0 +1,133 @@
+1: options dont work (2)--> DR4,DR4,DQ2,DQ8
+14: DQ alleles missing --> DR14,DR7,nan,nan
+18: DR alleles splits are missing --> DR3,DR11,DQ2,DQ7
+40: options dont work (3)--> DR15,DR7,DQ2,DQ7
+43: DQ alleles splits are missing--> DR1,DR17,DQ1,DQ2
+88: DQ alleles splits are missing--> DR1,DR10,DQ1,DQ1
+94: DQ alleles splits are missing--> DR15,DR4,DQ6,DQ3
+95: DQ alleles splits are missing--> DR15,DR4,DQ6,DQ3
+114: DQ alleles missing --> DR4,DR14,nan,nan
+120: DQ alleles missing --> DR17,DR4,nan,nan
+141: DQ alleles missing --> DR15,DR13,nan,nan
+145: DQ alleles missing --> DR11,DR7,nan,nan
+163: DQ alleles missing --> DR4,DR13,nan,nan
+164: DQ alleles missing --> DR7,DR7,nan,nan
+166: options dont work (1)--> DR1,DR18,DQ5,DQ2
+172: DR alleles splits are missing --> DR3,DR13,DQ2,DQ8
+174: DQ alleles splits are missing--> DR7,DR7,DQ2,DQ3
+176: options dont work (3)--> DR8,DR4,DQ8,DQ8
+198: DR alleles splits are missing --> DR3,DR7,DQ2,DQ2
+199: DQ alleles missing --> DR15,DR12,nan,nan
+203: options dont work (2)--> DR13,DR9,DQ5,DQ2
+225: DQ alleles splits are missing--> DR1,DR8,DQ5,DQ3
+227: DQ alleles missing --> DR103,DR4,nan,nan
+241: DR alleles splits are missing --> DR15,DR3,DQ6,DQ2
+255: DQ alleles splits are missing--> DR1,DR16,DQ1,DQ1
+276: DQ alleles missing --> DR15,DR7,nan,nan
+284: DQ alleles splits are missing--> DR1,DR9,DQ5,DQ3
+293: DQ alleles splits are missing--> DR11,DR13,DQ6,DQ3
+298: options dont work (2)--> DR17,DR17,DQ6,DQ2
+310: DQ alleles splits are missing--> DR4,DR13,DQ6,DQ3
+314: DQ alleles missing --> DR1,DR15,nan,nan
+324: DR alleles splits are missing --> DR15,DR3,DQ6,DQ2
+359: DR alleles splits are missing --> DR1,DR3,nan,nan
+371: DQ alleles missing --> DR15,DR13,nan,nan
+372: DQ alleles missing --> DR4,DR13,nan,nan
+403: DQ alleles splits are missing--> DR11,DR7,DQ2,DQ3
+407: DQ alleles splits are missing--> DR17,DR13,DQ1,DQ2
+409: DR alleles splits are missing --> DR3,DR11,DQ2,DQ3
+437: DQ alleles missing --> DR4,DR7,nan,nan
+447: DQ alleles splits are missing--> DR15,DR4,DQ1,DQ3
+457: DR alleles splits are missing --> DR3,DR4,DQ2,DQ3
+458: options dont work (3)--> DR16,DR7,DQ2,DQ7
+468: options dont work (3)--> DR13,DR16,DQ5,DQ5
+475: options dont work (1)--> DR17,DR4,DQ2,DQ9
+499: DR alleles splits are missing --> DR3,DR4,DQ2,DQ7
+507: DQ alleles splits are missing--> DR1,DR4,DQ5,DQ3
+562: DR alleles splits are missing --> DR3,DR13,DQ6,DQ2
+563: options dont work (3)--> DR1,DR17,DQ2,DQ2
+564: DQ alleles missing --> DR1,DR4,nan,nan
+583: DR alleles splits are missing --> DR15,DR3,DQ6,DQ2
+587: DQ alleles missing --> DR1,DR4,nan,nan
+611: options dont work (2)--> DR4,DR4,DQ2,DQ7
+634: DR alleles splits are missing --> DR3,DR4,DQ2,DQ8
+658: DQ alleles missing --> DR4,DR12,nan,nan
+666: DQ alleles splits are missing--> DR7,DR7,DQ2,DQ3
+679: DR alleles splits are missing --> DR3,DR13,DQ6,DQ2
+684: DQ alleles missing --> DR13,DR7,nan,nan
+710: DR alleles splits are missing --> DR1404,DR7,DQ5,DQ2
+711: DR alleles splits are missing --> DR1404,DR7,DQ5,DQ2
+713: options dont work (3)--> DR7,DR11,DQ7,DQ7
+798: DQ alleles splits are missing--> DR15,DR4,DQ6,DQ3
+808: DQ alleles splits are missing--> DR4,DR13,DQ6,DQ3
+819: DR alleles splits are missing --> DR3,DR7,nan,nan
+829: DQ alleles splits are missing--> DR7,DR7,DQ2,DQ3
+850: DQ alleles splits are missing--> DR4,DR4,DQ3,DQ3
+855: DR alleles splits are missing --> DR15,DR3,DQ6,DQ2
+868: options dont work (3)--> DR11,DR13,DQ2,DQ2
+880: options dont work (2)--> DR4,DR14,DQ6,DQ7
+891: DR alleles splits are missing --> DR1,DR3,DQ5,DQ2
+908: options dont work (2)--> DR17,DR13,DQ5,DQ2
+923: options dont work (2)--> DR4,DR13,DQ5,DQ8
+924: options dont work (2)--> DR4,DR13,DQ5,DQ8
+939: DQ alleles splits are missing--> DR4,DR7,DQ2,DQ3
+957: options dont work (2)--> DR4,DR12,DQ2,DQ7
+966: DQ alleles splits are missing--> DR4,DR7,DQ2,DQ3
+988: DQ alleles splits are missing--> DR4,DR13,DQ6,DQ3
+1073: options dont work (2)--> DR17,DR13,DQ5,DQ2
+1074: DR alleles splits are missing --> DR103,DR3,nan,nan
+1229: options dont work (3)--> DR7,DR1,DQ5,DQ5
+1247: DQ alleles splits are missing--> DR15,DR11,DQ1,DQ3
+1280: DQ alleles splits are missing--> DR11,DR13,DQ3,DQ3
+1282: DQ alleles splits are missing--> DR4,DR7,DQ2,DQ3
+1283: DQ alleles splits are missing--> DR103,DR15,DQ1,DQ1
+1297: DQ alleles splits are missing--> DR15,DR7,DQ1,DQ2
+1305: DQ alleles splits are missing--> DR17,DR11,DQ2,DQ3
+1339: DQ alleles splits are missing--> DR4,DR4,DQ3,DQ3
+1386: DQ alleles splits are missing--> DR7,DR7,DQ2,DQ3
+1392: DR alleles splits are missing --> DR3,DR7,DQ2,DQ2
+1396: DR alleles splits are missing --> DR3,DR3,DQ2,DQ2
+1397: DQ alleles splits are missing--> DR4,DR4,DQ3,DQ3
+1399: DQ alleles splits are missing--> DR4,DR7,DQ3,DQ3
+1436: DQ alleles splits are missing--> DR13,DR7,DQ1,DQ9
+1467: options dont work (2)--> DR4,DR10,DQ6,DQ8
+1490: DQ alleles splits are missing--> DR4,DR7,DQ3,DQ3
+1510: options dont work (2)--> DR17,DR17,DQ6,DQ2
+1514: DQ alleles splits are missing--> DR1,DR4,DQ5,DQ3
+1539: DR alleles splits are missing --> DR3,DR7,DQ2,DQ3
+1563: DR alleles splits are missing --> DR3,DR4,DQ2,DQ3
+1568: DR alleles splits are missing --> DR3,DR8,DQ2,DQ3
+1576: DR alleles splits are missing --> DR3,DR3,DQ2,DQ2
+1581: DQ alleles splits are missing--> DR15,DR4,DQ6,DQ3
+1587: DQ alleles splits are missing--> DR13,DR7,DQ6,DQ3
+1606: DR alleles splits are missing --> DR15,DR3,DQ6,DQ2
+1611: DQ alleles splits are missing--> DR7,DR7,DQ2,DQ3
+1645: DR alleles splits are missing --> DR3,DR11,DQ2,DQ3
+1646: DR alleles splits are missing --> DR3,DR11,DQ2,DQ3
+1659: options dont work (2)--> DR17,DR17,DQ6,DQ2
+1662: DR alleles splits are missing --> DR15,DR3,DQ6,DQ2
+1673: DQ alleles splits are missing--> DR4,DR7,DQ2,DQ3
+1700: DQ alleles splits are missing--> DR15,DR4,DQ6,DQ3
+1780: options dont work (2)--> DR13,DR7,DQ5,DQ2
+1785: options dont work (2)--> DR13,DR13,DQ5,DQ6
+1829: DQ alleles missing --> DR1,DR13,nan,nan
+1846: DR alleles splits are missing --> DR3,DR7,DQ6,DQ9
+1896: DQ alleles missing --> DR4,DR9,nan,nan
+1939: DQ alleles missing --> DR12,DR7,nan,nan
+1995: options dont work (1)--> DR17,DR7,DQ2,DQ7
+2020: options dont work (1)--> DR1,DR11,DQ5,DQ8
+2103: options dont work (2)--> DR17,DR13,DQ5,DQ2
+2143: options dont work (1)--> DR15,DR15,DQ6,DQ2
+2153: options dont work (2)--> DR18,DR13,DQ5,DQ4
+2217: options dont work (1)--> DR16,DR11,DQ5,DQ2
+2317: options dont work (1)--> DR14,DR7,DQ5,DQ8
+2332: options dont work (2)--> DR13,DR9,DQ5,DQ2
+2364: options dont work (3)--> DR17,DR4,DQ6,DQ7
+2372: options dont work (2)--> DR13,DR13,DQ5,DQ7
+2456: options dont work (3)--> DR13,DR14,DQ5,DQ8
+2533: options dont work (3)--> DR15,DR12,DQ7,DQ7
+2561: options dont work (2)--> DR17,DR11,DQ5,DQ2
+2579: options dont work (3)--> DR1,DR17,DQ6,DQ2
+2717: DR alleles splits are missing --> DR13,DR1404,DQ5,DQ6
+2805: options dont work (3)--> DR4,DR17,DQ2,DQ2
+2864: DR alleles missing --> nan,nan,nan,nan

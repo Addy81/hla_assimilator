@@ -3,7 +3,7 @@
 #
 #
 #
-# Adriana Toutoudaki (October 2018), contact: adriana.tou@gmail.com
+# Adriana Toutoudaki (December 2018), contact: adriana.tou@gmail.com
 
 import pandas as pd
 import re
@@ -15,17 +15,21 @@ if len(sys.argv) == 1:
     sys.exit("Error: Please provide an input file.")
 
 data_file = sys.argv[1]
+print (sys.argv[1])
 
 if len(sys.argv) == 2:
-    output_file = str(data_file).replace(".xlsx", ".assimilated.xlsx")
+    output_file_name = str(data_file).replace(".xlsx", "_assimilated.xlsx")
+    output_file = '../results/' + output_file_name
 else:
     output_file = '../results/' + sys.argv[2]
 
 
-rules_file = '../data/HLA_rules.xlsx'
-
-
+rules_path = 'classII_rules.xlsx'
 data = pd.read_excel(data_file, "Main data")
+rows = data.shape[0]
+rules = pd.read_excel('classII_rules.xlsx')
+
+
 #rules = pd.read_excel(rules_file)
 
 # print (data)
@@ -201,8 +205,18 @@ for c_pat in column_patterns:
 
 # create a list containing all class II rules
 
+classII = []
+rule_rows = rules.shape[0]
+count = 1
+for row in range(rule_rows):
+    row_sublist = [count]
+    count += 1
+    for column in rules.columns:
+        row_sublist.append(rules.loc[row][column])
+    classII.append(row_sublist)
+"""
 def parse_rules(rules_file):
-    """parses rules from excel into functional lists"""
+    parses rules from excel into functional lists
     rules = pd.read_excel(rules_file)
     classII = []
     rule_rows = rules.shape[0]
@@ -217,27 +231,161 @@ def parse_rules(rules_file):
 
     return classII
 
+parse_rules(rules_path)
 
-''''
-for c_pat in column_patterns:
-    dr_col = 'HR_' + c_pat + '_DR_Split'
-    dq_col = 'HR_' + c_pat + '_DQ_Split'
-    drb_col = 'HR_' + c_pat + '_DRB3/4/5'
-    dqa_col = 'HR_' + c_pat + '_DQA'
+"""
 
+
+options = {
+    "DR1": ["DQ5"],
+    "DR103": ["DQ5", "DQ7"],
+    "DR4": ["DQ7", "DQ8", "DQ4"],
+    "DR7": ["DQ2", "DQ9"],
+    "DR8": ["DQ4", "DQ7", "DQ6"],
+    "DR9": ["DQ2", "DQ9"],
+    "DR10": ["DQ5"],
+    "DR11": ["DQ6", "DQ7"],
+    "DR12": ["DQ5", "DQ7"],
+    "DR13": ["DQ2", "DQ6", "DQ7"],
+    "DR14": ["DQ5", "DQ7"],
+    "DR15": ["DQ6", "DQ5"],
+    "DR16": ["DQ5"],
+    "DR17": ["DQ2"],
+    "DR18": ["DQ4"]
+}
+
+# Swap columns around to allow for the one with only one option to be first
+
+def column_swap(patient):
     for row in range(rows):
-        dr = data.loc[row, dr_col]
-        dq = data.loc[row, dq_col]
+        count1 = 0
+        count2 = 0
+        DR1 = data.loc[row, "HR_" + patient + "_First_DR_Split"]
+        DR2 = data.loc[row, "HR_" + patient + "_Second_DR_Split"]
+        DQ1 = data.loc[row, "HR_" + patient + "_First_DQ_Split"]
+        DQ2 = data.loc[row, "HR_" + patient + "_Second_DQ_Split"]
 
-        for rule in classII:
-            if pd.isnull(data.loc[row, dr_col]):
-                pass
-            elif dr == rule[0] and dq == rule[4]:
+        if DR1 in options.keys() and DR2 in options.keys():
+            if DQ1 in options.get(DR1):
+                count1 = count1 + 1
+            if DQ2 in options.get(DR1):
+                count1 = count1 + 1
+            if DQ1 in options.get(DR2):
+                count2 = count2 + 1
+            if DQ2 in options.get(DR2):
+                count2 = count2 + 1
+        # elif type(DQ1) == float or type(DQ2) == float:
+        # pass
+        if count1 > 1 and count2 < 2:
+            data.loc[row, "HR_" + patient + "_First_DR_Split"] = DR2
+            data.loc[row, "HR_" + patient + "_Second_DR_Split"] = DR1
 
-'''
+column_swap("Recip")
+column_swap("Donor")
+
+# USe it when we are back in normal dataset
+def add_sub_column(patient):
+    """Adds column to store substitution codes"""
+
+    pattern = patient + "_First_DR_Broad"
+    for column in data.columns:
+        column_match = re.match(pattern,column)
+        col_index = data.columns.get_loc(pattern)
+        if column_match:
+            new_column = patient + "_First_Sub"
+            new_column2 = patient + "_Second_Sub"
+            data.insert(col_index, new_column,np.nan)
+            data.insert(col_index+6, new_column2, np.nan)
+
+add_sub_column("Recip")
+add_sub_column("Donor")
+
+
+dq_splits = ["DQ2","DQ4","DQ5","DQ6","DQ7","DQ8","DQ9"]
+dr_splits = ["DR1","DR103","DR4","DR7","DR8","DR9","DR10","DR11","DR12","DR13","DR14","DR15","DR16","DR17","DR18"]
+
+dq_broads = ["DQ1", "DQ3"]
+dr_broads = ["DR5", "DR6", "DR2", "DR3"]
+
+def assign_sub_codes(patient):
+    """function that matches DR-DQs and assigns a code to be then substituted"""
+
+    with open((patient + "_classII_log.txt"), "w+") as f:
+
+        for row in range(rows):
+            R1 = data.loc[row, ("HR_" + patient + "_First_DR_Split")]
+            R2 = data.loc[row, "HR_" + patient + "_Second_DR_Split"]
+            Q1 = data.loc[row, "HR_" + patient + "_First_DQ_Split"]
+            Q2 = data.loc[row, "HR_" + patient + "_Second_DQ_Split"]
+            first_sub = patient + "_First_Sub"
+            second_sub = patient + "_Second_Sub"
+            printed_options = str(R1) + "," + str(R2) + "," + str(Q1) + "," + str(Q2)
+
+            if (type(R1) != str) or (type(R2) != str):
+                f.write("%d: DR alleles missing --> %s\n" % (row, printed_options))
+                continue
+            elif (R1 not in dr_splits) or (R2 not in dr_splits):
+                f.write("%d: DR alleles splits are missing --> %s\n" % (row, printed_options))
+                continue
+            else:
+                if (type(Q1) != str) or (type(Q2) != str):
+                    f.write("%d: DQ alleles missing --> %s\n" % (row, printed_options))
+                    continue
+                elif (Q1 not in dq_splits) or (Q2 not in dq_splits):
+                    f.write("%d: DQ alleles splits are missing--> %s\n" % (row, printed_options))
+                    continue
+                else:
+                    dq_options = [Q1, Q2]
+
+                    while len(dq_options) > 0:
+                        if dq_options[0] in options.get(R1):
+                            for rule in classII:
+                                if rule[1] == R1 and rule[5] == Q1:
+                                    data.loc[row, first_sub] = "a" + str(rule[0])
+                                    del dq_options[0]
+                                    break
+                            if dq_options[0] in options.get(R2):
+                                for rule in classII:
+                                    if rule[1] == R2 and rule[5] == Q2:
+                                        data.loc[row, second_sub] = "a" + str(rule[0])
+                                        del dq_options[0]
+                            else:
+                                f.write("%d: options dont work (1)--> %s\n" % (row, printed_options))
+                                break
+                        elif dq_options[1] in options.get(R1):
+                            for rule in classII:
+                                if rule[1] == R1 and rule[5] == Q2:
+                                    data.loc[row, first_sub] = "b" + str(rule[0])
+                                    del dq_options[1]
+                                    break
+                            if dq_options[0] in options.get(R2):
+                                for rule in classII:
+                                    if rule[1] == R2 and rule[5] == Q1:
+                                        data.loc[row, second_sub] = "b" + str(rule[0])
+                                        del dq_options[0]
+                            else:
+                                f.write("%d: options dont work (2)--> %s\n" % (row, printed_options))
+                                break
+                        else:
+                            f.write("%d: options dont work (3)--> %s\n" % (row, printed_options))
+                            break
+
+
+assign_sub_codes("Recip")
+assign_sub_codes("Donor")
+
+#print (data["Recip_First_Sub"], data["Recip_Second_Sub"])
 
 # save file into a different excel file
 writer = pd.ExcelWriter(output_file, engine = 'xlsxwriter')
 
 data.to_excel(writer,sheet_name='Main data')
 writer.save()
+
+"""
+writer = pd.ExcelWriter("classII_codes.xlsx", engine = 'xlsxwriter')
+
+data.to_excel(writer,sheet_name='Main data')
+writer.save()
+
+"""
