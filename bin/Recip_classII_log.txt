@@ -1,0 +1,141 @@
+6: DQ alleles splits are missing
+15: DR alleles splits are missing
+38: options dont work 
+40: DQ alleles missing
+54: options dont work 
+59: DQ alleles splits are missing
+70: DR alleles splits are missing
+84: options dont work 
+85: DQ alleles splits are missing
+86: options dont work 
+95: DQ alleles splits are missing
+98: options dont work 
+100: DQ alleles splits are missing
+108: DQ alleles missing
+114: DQ alleles splits are missing
+134: DQ alleles missing
+144: DQ alleles splits are missing
+148: DR alleles splits are missing
+152: options dont work 
+166: options dont work 
+168: DQ alleles missing
+171: options dont work 
+173: DQ alleles missing
+178: DQ alleles splits are missing
+187: DQ alleles splits are missing
+193: DQ alleles missing
+201: DQ alleles splits are missing
+269: DQ alleles missing
+287: DR alleles splits are missing
+291: DR alleles splits are missing
+295: DQ alleles missing
+296: DQ alleles missing
+315: DR alleles splits are missing
+328: DR alleles splits are missing
+333: DQ alleles splits are missing
+347: DQ alleles splits are missing
+359: DR alleles splits are missing
+380: DQ alleles missing
+408: DQ alleles missing
+411: options dont work 
+422: DQ alleles missing
+432: options dont work 
+440: options dont work 
+442: DQ alleles missing
+452: options dont work 
+468: options dont work 
+496: DQ alleles splits are missing
+557: options dont work 
+591: options dont work 
+609: DR alleles splits are missing
+615: DR alleles splits are missing
+620: options dont work 
+629: DR alleles splits are missing
+642: options dont work 
+644: DQ alleles splits are missing
+682: DQ alleles missing
+691: DR alleles splits are missing
+693: options dont work 
+694: DQ alleles missing
+702: options dont work 
+717: DQ alleles missing
+722: DQ alleles splits are missing
+769: DQ alleles splits are missing
+776: DR alleles splits are missing
+789: options dont work 
+811: options dont work 
+842: DR alleles splits are missing
+877: DQ alleles splits are missing
+880: options dont work 
+886: DQ alleles missing
+922: DQ alleles splits are missing
+972: DQ alleles splits are missing
+980: options dont work 
+1002: DR alleles splits are missing
+1017: DQ alleles splits are missing
+1040: DQ alleles splits are missing
+1043: DR alleles splits are missing
+1045: DR alleles splits are missing
+1081: DR alleles splits are missing
+1154: options dont work 
+1162: options dont work 
+1189: DR alleles splits are missing
+1222: options dont work 
+1237: options dont work 
+1274: DQ alleles missing
+1319: DQ alleles splits are missing
+1348: options dont work 
+1361: DR alleles splits are missing
+1389: DR alleles splits are missing
+1411: options dont work 
+1417: options dont work 
+1418: options dont work 
+1455: options dont work 
+1467: options dont work 
+1513: options dont work 
+1524: options dont work 
+1533: DQ alleles splits are missing
+1567: options dont work 
+1599: DQ alleles missing
+1607: options dont work 
+1659: options dont work 
+1676: DR alleles splits are missing
+1686: options dont work 
+1697: options dont work 
+1802: options dont work 
+1822: options dont work 
+1839: DQ alleles splits are missing
+1858: options dont work 
+2002: options dont work 
+2010: options dont work 
+2059: options dont work 
+2157: options dont work 
+2209: options dont work 
+2217: options dont work 
+2265: options dont work 
+2266: options dont work 
+2339: DQ alleles splits are missing
+2357: options dont work 
+2377: options dont work 
+2400: options dont work 
+2456: options dont work 
+2499: options dont work 
+2522: options dont work 
+2529: options dont work 
+2555: options dont work 
+2556: options dont work 
+2580: options dont work 
+2602: options dont work 
+2677: options dont work 
+2678: options dont work 
+2683: DR alleles splits are missing
+2693: options dont work 
+2698: options dont work 
+2717: options dont work 
+2752: options dont work 
+2778: options dont work 
+2782: options dont work 
+2784: options dont work 
+2836: options dont work 
+2843: options dont work 
+2859: options dont work 
