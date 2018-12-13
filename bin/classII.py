@@ -117,7 +117,6 @@ def add_sub_column(patient):
 
 add_sub_column("Recip")
 
-#print (data.columns)
 
 dq_splits = ["DQ2","DQ4","DQ5","DQ6","DQ7","DQ8","DQ9"]
 dr_splits = ["DR1","DR103","DR4","DR7","DR8","DR9","DR10","DR11","DR12","DR13","DR14","DR15","DR16","DR17","DR18"]
@@ -128,75 +127,65 @@ dr_broads = ["DR5", "DR6", "DR2", "DR3"]
 def assign_sub_codes(patient):
     """function that matches DR-DQs and assigns a code to be then substituted"""
 
-    f = open((patient + "_classII_log.txt"), "w+")
+    with open((patient + "_classII_log.txt"), "w+") as f:
 
-    for row in range(rows):
-        R1 = data.loc[row, ("HR_" + patient + "_First_DR_Split")]
-        R2 = data.loc[row, "HR_" + patient + "_Second_DR_Split"]
-        Q1 = data.loc[row, "HR_" + patient + "_First_DQ_Split"]
-        Q2 = data.loc[row, "HR_" + patient + "_Second_DQ_Split"]
-        first_sub = patient + "_First_Sub"
-        second_sub = patient + "_Second_Sub"
+        for row in range(rows):
+            R1 = data.loc[row, ("HR_" + patient + "_First_DR_Split")]
+            R2 = data.loc[row, "HR_" + patient + "_Second_DR_Split"]
+            Q1 = data.loc[row, "HR_" + patient + "_First_DQ_Split"]
+            Q2 = data.loc[row, "HR_" + patient + "_Second_DQ_Split"]
+            first_sub = patient + "_First_Sub"
+            second_sub = patient + "_Second_Sub"
+            printed_options = str(R1) +","+ str(R2) +","+ str(Q1) + ","+ str(Q2)
 
-        if (type(R1) != str) or  (type(R2) != str):
-            f.write("%d: DR alleles missing\n" % row)
-            print(row, "DR alleles missing")
-            continue
-        elif (R1 not in dr_splits) or (R2 not in dr_splits):
-            f.write("%d: DR alleles splits are missing\n" % row)
-            print(row, "DR allele splits are missing")
-            continue
-        else:
-            if (type(Q1) != str) or  (type(Q2) != str):
-                f.write("%d: DQ alleles missing\n" % row)
-                print(row, "DR alleles missing")
+            if (type(R1) != str) or  (type(R2) != str):
+                f.write("%d: DR alleles missing --> %s\n" % (row,printed_options))
                 continue
-            elif (Q1 not in dq_splits) or (Q2 not in dq_splits):
-                f.write("%d: DQ alleles splits are missing\n" % row)
-                print(row, "DR allele splits are missing")
+            elif (R1 not in dr_splits) or (R2 not in dr_splits):
+                f.write("%d: DR alleles splits are missing --> %s\n" % (row,printed_options))
                 continue
             else:
-                dq_options = [Q1,Q2]
-                print(row,R1,R2,Q1,Q2)
+                if (type(Q1) != str) or  (type(Q2) != str):
+                    f.write("%d: DQ alleles missing --> %s\n" % (row,printed_options))
+                    continue
+                elif (Q1 not in dq_splits) or (Q2 not in dq_splits):
+                    f.write("%d: DQ alleles splits are missing--> %s\n" % (row,printed_options))
+                    continue
+                else:
+                    dq_options = [Q1,Q2]
 
-                while len(dq_options) > 0:
-                    if dq_options[0] in options.get(R1):
-                        for rule in classII:
-                            if rule[1] == R1 and rule[5]== Q1:
-                                data.loc[row,first_sub] = "a" + str(rule[0])
-                                print (data.loc[row,first_sub])
-                                del dq_options[0]
-                                break
-                        if dq_options[0] in options.get(R2):
+                    while len(dq_options) > 0:
+                        if dq_options[0] in options.get(R1):
                             for rule in classII:
-                                if rule[1]== R2 and rule[5] == Q2:
-                                    data.loc[row,second_sub] = "a" + str(rule[0])
-                                    print(data.loc[row, second_sub])
+                                if rule[1] == R1 and rule[5]== Q1:
+                                    data.loc[row,first_sub] = "a" + str(rule[0])
                                     del dq_options[0]
-                        else:
-                            f.write("%d: options dont work \n" % row)
-                            break
-                    elif dq_options[1] in options.get(R1):
-                        for rule in classII:
-                            if rule[1] == R1 and rule[5]== Q2:
-                                data.loc[row,first_sub] = "b" + str(rule[0])
-                                print(data.loc[row, first_sub])
-                                del dq_options[1]
+                                    break
+                            if dq_options[0] in options.get(R2):
+                                for rule in classII:
+                                    if rule[1]== R2 and rule[5] == Q2:
+                                        data.loc[row,second_sub] = "a" + str(rule[0])
+                                        del dq_options[0]
+                            else:
+                                f.write("%d: options dont work (1)--> %s\n" % (row,printed_options))
                                 break
-                        if dq_options[0] in options.get(R2):
+                        elif dq_options[1] in options.get(R1):
                             for rule in classII:
-                                if rule[1] == R2 and rule[5] == Q1:
-                                    data.loc[row,second_sub] = "b" + str(rule[0])
-                                    print(data.loc[row, second_sub])
-                                    del dq_options[0]
+                                if rule[1] == R1 and rule[5]== Q2:
+                                    data.loc[row,first_sub] = "b" + str(rule[0])
+                                    del dq_options[1]
+                                    break
+                            if dq_options[0] in options.get(R2):
+                                for rule in classII:
+                                    if rule[1] == R2 and rule[5] == Q1:
+                                        data.loc[row,second_sub] = "b" + str(rule[0])
+                                        del dq_options[0]
+                            else:
+                                f.write("%d: options dont work (2)--> %s\n" % (row,printed_options))
+                                break
                         else:
-                            f.write("%d: options dont work \n" % row)
+                            f.write("%d: options dont work (3)--> %s\n" % (row,printed_options))
                             break
-                    else:
-                        f.write("%d: options dont work \n" % row)
-                        break
-
-    f.close()
 
 assign_sub_codes("Recip")
 

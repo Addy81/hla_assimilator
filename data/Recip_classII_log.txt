@@ -103,3 +103,39 @@
 1686: options dont work (3)--> DR8,DR10,DQ5,DQ5
 1697: options dont work (2)--> DR13,DR13,DQ5,DQ6
 1802: options dont work (3)--> DR4,DR7,DQ2,DQ2
+1822: options dont work (3)--> DR11,DR7,DQ5,DQ2
+1839: DQ alleles splits are missing--> DR1,DR8,DQ5,DQ3
+1858: options dont work (2)--> DR17,DR13,DQ5,DQ2
+2002: options dont work (3)--> DR15,DR13,DQ2,DQ7
+2010: options dont work (2)--> DR4,DR4,DQ2,DQ8
+2059: options dont work (3)--> DR7,DR4,DQ8,DQ8
+2157: options dont work (3)--> DR17,DR11,DQ6,DQ7
+2209: options dont work (2)--> DR13,DR13,DQ5,DQ6
+2217: options dont work (2)--> DR11,DR8,DQ2,DQ7
+2265: options dont work (3)--> DR11,DR7,DQ5,DQ2
+2266: options dont work (3)--> DR1,DR17,DQ6,DQ2
+2339: DQ alleles splits are missing--> DR8,DR8,DQ3,DQ4
+2357: options dont work (3)--> DR11,DR4,DQ8,DQ8
+2377: options dont work (2)--> DR11,DR13,DQ5,DQ7
+2400: options dont work (1)--> DR4,DR13,DQ8,DQ9
+2456: options dont work (1)--> DR17,DR13,DQ2,DQ8
+2499: options dont work (1)--> DR15,DR4,DQ6,DQ2
+2522: options dont work (2)--> DR4,DR4,DQ2,DQ8
+2529: options dont work (1)--> DR13,DR13,DQ2,DQ9
+2555: options dont work (3)--> DR11,DR10,DQ5,DQ5
+2556: options dont work (2)--> DR11,DR13,DQ5,DQ6
+2580: options dont work (2)--> DR11,DR13,DQ5,DQ7
+2602: options dont work (3)--> DR4,DR13,DQ6,DQ9
+2677: options dont work (2)--> DR11,DR13,DQ5,DQ7
+2678: options dont work (2)--> DR4,DR14,DQ6,DQ8
+2683: DR alleles splits are missing --> DR4,DR1404,DQ5,DQ7
+2693: options dont work (1)--> DR13,DR8,DQ7,DQ9
+2698: options dont work (2)--> DR11,DR11,DQ5,DQ7
+2717: options dont work (3)--> DR13,DR12,DQ5,DQ5
+2752: options dont work (2)--> DR4,DR13,DQ5,DQ8
+2778: options dont work (3)--> DR13,DR13,DQ9,DQ9
+2782: options dont work (3)--> DR13,DR9,DQ5,DQ9
+2784: options dont work (3)--> DR11,DR13,DQ5,DQ5
+2836: options dont work (2)--> DR4,DR8,DQ2,DQ4
+2843: options dont work (1)--> DR15,DR15,DQ6,DQ7
+2859: options dont work (2)--> DR17,DR13,DQ5,DQ2
