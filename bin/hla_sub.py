@@ -10,12 +10,12 @@ import re
 import sys
 import numpy as np
 
-# parse file into variable
+# parse file into a variable
 if len(sys.argv) == 1:
     sys.exit("Error: Please provide an input file.")
 
 data_file = sys.argv[1]
-print (sys.argv[1])
+print("File to be assimilated: %s " % data_file)
 
 if len(sys.argv) == 2:
     output_file_name = str(data_file).replace(".xlsx", "_assimilated.xlsx")
@@ -28,17 +28,6 @@ rules_path = 'classII_rules.xlsx'
 data = pd.read_excel(data_file, "Main data")
 rows = data.shape[0]
 rules = pd.read_excel('classII_rules.xlsx')
-
-
-#rules = pd.read_excel(rules_file)
-
-# print (data)
-# make rules lists
-#A_LR = (rules.loc[:20,'HLA-A']).tolist()
-#A_HR = (rules.loc[:20,'Assimilation']).tolist()
-
-
-# fill_split function
 
 def fill_split(patient):
     """iterates through the columns containing the HLA data and
@@ -64,6 +53,7 @@ def fill_split(patient):
 
 
 # Run function for Recipient and Donor data
+print ("Filling empty split column cells")
 fill_split('Recip')
 fill_split('Donor')
 
@@ -86,9 +76,6 @@ B_HR = ['B*07:02', 'B*08:01', 'B*13:01', 'B*14:01', 'B*14:02', 'B*15:01', 'B*15:
 # C rules- simple. The Cw/B pairings need to be added.
 C_LR = ["Cw1","Cw2","Cw4","Cw9","Cw5","Cw6","Cw12","Cw14","Cw15","Cw17","Cw18",]
 C_HR = ["C*01:02","C*02:02","C*04:01","C*03:03","C*05:01","C*06:02","C*12:03","C*14:02","C*15:02","C*17:01","C*18:01",]
-
-
-# replace
 
 # Copy split column and rename it to with an HR_ prefix
 for column in data.columns:
@@ -115,15 +102,14 @@ def fill_hom(patient, gene):
         else:
             pass
 
-
+print("Filling missing homozyhours alleles")
 fill_hom('Recip', 'C')
 fill_hom('Donor', 'C')
-
 fill_hom('Recip', 'DQ')
 fill_hom('Donor', 'DQ')
 
 # Replace low-res alleles in the HR_ columns using the rule lists above
-
+print("Assimilating Class I alleles")
 for column in data.columns:
     column_check = re.match('HR_', column)
     if column_check:    
@@ -135,8 +121,6 @@ for column in data.columns:
 
 
 # special Cw/B pairing replacement
-
-
 rows = data.shape[0]
 
 def c_assimilation(to_replace, general_rule, exc1, exc2=(None, None),exc3=(None, None)):
@@ -149,7 +133,6 @@ def c_assimilation(to_replace, general_rule, exc1, exc2=(None, None),exc3=(None,
                 c_col = "HR_" + patient + '_' + variable + '_C_Split'
                 b1_col = "HR_" + patient + '_First_B_Split'
                 b2_col = "HR_" + patient + '_Second_B_Split'
-
                 c = data.loc[row, c_col]
                 b1 = data.iloc[row][b1_col]
                 b2 = data.iloc[row][b2_col]
@@ -166,13 +149,10 @@ def c_assimilation(to_replace, general_rule, exc1, exc2=(None, None),exc3=(None,
                     data.loc[row, c_col] = re.sub(to_replace, general_rule, c)
 
 
-# Function that replaces Cw alleles based on the B allele correlation
-# format of function is
+# Function that replaces Cw alleles based on the B allele correlation format of function is:
 # to_replace - CwX : the low res allele to be substituted
 # general_rule : C*xx:xx :the most common high-res allele
 # exc1,exc2,exc3: tuple that contains the associated B allele with the special C to replace. (B*xx:xx,C*xx:xx)
-
-
 c_assimilation(to_replace='Cw10', general_rule='C*03:02', exc1=('B*40:01', 'C*03:04'), exc2=('B*15:01', 'C*03:04'))
 c_assimilation(to_replace='Cw8', general_rule='C*08:01', exc1=('B*14:01', 'C*08:02'), exc2=('B*14:02', 'C*08:02'))
 c_assimilation(to_replace='Cw16', general_rule='C*16:01', exc1=('B*44:03', 'C*16:02'), exc2=('B*55:01', 'C*16:02'))
@@ -180,7 +160,7 @@ c_assimilation(to_replace='Cw7', general_rule='C*07:01', exc1=('B*07:02', 'C*07:
 
 
 #add a DR51/52/53 column
-
+print ("Adding some extra columns.")
 column_patterns = ['Recip_First', 'Recip_Second', 'Donor_First', 'Donor_Second']
 
 for c_pat in column_patterns:
@@ -201,10 +181,7 @@ for c_pat in column_patterns:
             new_dq_column = 'HR_' + c_pat + '_DQA'
             data.insert((col_index + 1), new_dq_column, np.nan)
 
-
-
 # create a list containing all class II rules
-
 classII = []
 rule_rows = rules.shape[0]
 count = 1
@@ -214,27 +191,6 @@ for row in range(rule_rows):
     for column in rules.columns:
         row_sublist.append(rules.loc[row][column])
     classII.append(row_sublist)
-"""
-def parse_rules(rules_file):
-    parses rules from excel into functional lists
-    rules = pd.read_excel(rules_file)
-    classII = []
-    rule_rows = rules.shape[0]
-    for row in range(rule_rows):
-        row_sublist = []
-        for column in rules.columns:
-            row_sublist.append(rules.loc[row][column])
-        classII.append(row_sublist)
-
-    for item in classII:
-        print(item)
-
-    return classII
-
-parse_rules(rules_path)
-
-"""
-
 
 options = {
     "DR1": ["DQ5"],
@@ -255,7 +211,7 @@ options = {
 }
 
 # Swap columns around to allow for the one with only one option to be first
-
+print ("Assimilating Class II alleles.")
 def column_swap(patient):
     for row in range(rows):
         count1 = 0
@@ -303,7 +259,6 @@ add_sub_column("Donor")
 
 dq_splits = ["DQ2","DQ4","DQ5","DQ6","DQ7","DQ8","DQ9"]
 dr_splits = ["DR1","DR103","DR4","DR7","DR8","DR9","DR10","DR11","DR12","DR13","DR14","DR15","DR16","DR17","DR18"]
-
 dq_broads = ["DQ1", "DQ3"]
 dr_broads = ["DR5", "DR6", "DR2", "DR3"]
 
@@ -377,10 +332,14 @@ assign_sub_codes("Donor")
 #print (data["Recip_First_Sub"], data["Recip_Second_Sub"])
 
 # save file into a different excel file
+
+print("Writing your assimilated alleles in a brand new excel file.")
 writer = pd.ExcelWriter(output_file, engine = 'xlsxwriter')
 
 data.to_excel(writer,sheet_name='Main data')
 writer.save()
+
+print("Success! Your new file %s is ready to view" % output_file_name)
 
 """
 writer = pd.ExcelWriter("classII_codes.xlsx", engine = 'xlsxwriter')
