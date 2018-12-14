@@ -329,7 +329,6 @@ def assign_sub_codes(patient):
 assign_sub_codes("Recip")
 assign_sub_codes("Donor")
 
-print("")
 
 def assimilate_classII(patient):
     """ Function that substitutes low-res with high-res class II alleles"""
@@ -378,11 +377,12 @@ def assimilate_classII(patient):
 assimilate_classII("Recip")
 assimilate_classII("Donor")
 
+print("Tidying up your file.\n")
 data.drop(columns= ['Recip_First_Sub', 'Recip_Second_Sub', 'Donor_First_Sub', 'Donor_Second_Sub'])
 
 # save file into a different excel file
 
-print("Writing your assimilated alleles in a brand new excel file.")
+print("Writing your assimilated alleles in a brand new excel file.\n")
 writer = pd.ExcelWriter(output_file, engine = 'xlsxwriter')
 
 data.to_excel(writer,sheet_name='Main data')
