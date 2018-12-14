@@ -196,15 +196,44 @@ def assimilate_classII(patient):
     for row in range(rows):
         code1 = data.loc[row, patient + "_First_Sub"]
         code2 = data.loc[row, patient + "_Second_Sub"]
+        R1 = data.loc[row, "HR_" + patient + "_First_DR_Split"]
+        R2 = data.loc[row, "HR_" + patient + "_Second_DR_Split"]
+        Q1 = data.loc[row, "HR_" + patient + "_First_DQ_Split"]
+        Q2 = data.loc[row, "HR_" + patient + "_Second_DQ_Split"]
         #print(code1,code2)
 
         if type(code1) != str or type(code2) != str:
             continue
         elif code1.startswith("a"):
-            print (first_code)
+            code1 = int(code1.lstrip("a"))
+            code2 = int(code2.lstrip("a"))
+            for rule in classII:
+                if rule[0] == code1:
+                    data.loc[row, "HR_" + patient + "_First_DR_Split"] = rule[2]
+                    data.loc[row, "HR_" + patient + "_First_DRB3/4/5"] = rule[4]
+                    data.loc[row, "HR_" + patient + "_First_DQ_Split"] = rule[6]
+                    data.loc[row, "HR_" + patient + "_First_DQA"] = rule[7]
+                if rule[0] == code2:
+                    data.loc[row, "HR_" + patient + "_Second_DR_Split"] = rule[2]
+                    data.loc[row, "HR_" + patient + "_Second_DRB3/4/5"] = rule[4]
+                    data.loc[row, "HR_" + patient + "_Second_DQ_Split"] = rule[6]
+                    data.loc[row, "HR_" + patient + "_Second_DQA"] = rule[7]
         elif code1.startswith("b"):
-            print(second_code)
-            
+            code1 = int(code1.lstrip("b"))
+            code2 = int(code2.lstrip("b"))
+            for rule in classII:
+                if rule[0] == code1:
+                    data.loc[row, "HR_" + patient + "_First_DR_Split"] = rule[2]
+                    data.loc[row, "HR_" + patient + "_First_DRB3/4/5"] = rule[4]
+                    data.loc[row, "HR_" + patient + "_Second_DQ_Split"] = rule[6]
+                    data.loc[row, "HR_" + patient + "_Second_DQA"] = rule[7]
+                if rule[0] == code2:
+                    data.loc[row, "HR_" + patient + "_Second_DR_Split"] = rule[2]
+                    data.loc[row, "HR_" + patient + "_Second_DRB3/4/5"] = rule[4]
+                    data.loc[row, "HR_" + patient + "_First_DQ_Split"] = rule[6]
+                    data.loc[row, "HR_" + patient + "_First_DQA"] = rule[7]
+
+
 assimilate_classII("Recip")
 
 #assign_sub_codes("Donor")

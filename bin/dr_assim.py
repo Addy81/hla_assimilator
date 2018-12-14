@@ -200,6 +200,14 @@ for row in range(rows):
 print(data)
 
 
+def highlight(patient):
+
+    for row in range(rows):
+        code1 = data.loc[row, patient + "_First_Sub"]
+        code2 = data.loc[row, patient + "_Second_Sub"]
+
+        if type(code1) != str or type(code2) != str:
+            return ['background-colour: yellow']
 
 
 

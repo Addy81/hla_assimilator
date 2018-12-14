@@ -102,7 +102,7 @@ def fill_hom(patient, gene):
         else:
             pass
 
-print("Filling missing homozyhours alleles")
+print("Filling missing homozygours alleles")
 fill_hom('Recip', 'C')
 fill_hom('Donor', 'C')
 fill_hom('Recip', 'DQ')
@@ -329,7 +329,56 @@ def assign_sub_codes(patient):
 assign_sub_codes("Recip")
 assign_sub_codes("Donor")
 
-#print (data["Recip_First_Sub"], data["Recip_Second_Sub"])
+print("")
+
+def assimilate_classII(patient):
+    """ Function that substitutes low-res with high-res class II alleles"""
+
+    for row in range(rows):
+        code1 = data.loc[row, patient + "_First_Sub"]
+        code2 = data.loc[row, patient + "_Second_Sub"]
+        R1 = data.loc[row, "HR_" + patient + "_First_DR_Split"]
+        R2 = data.loc[row, "HR_" + patient + "_Second_DR_Split"]
+        Q1 = data.loc[row, "HR_" + patient + "_First_DQ_Split"]
+        Q2 = data.loc[row, "HR_" + patient + "_Second_DQ_Split"]
+        #print(code1,code2)
+
+        if type(code1) != str or type(code2) != str:
+            continue
+        elif code1.startswith("a"):
+            code1 = int(code1.lstrip("a"))
+            code2 = int(code2.lstrip("a"))
+            for rule in classII:
+                if rule[0] == code1:
+                    data.loc[row, "HR_" + patient + "_First_DR_Split"] = rule[2]
+                    data.loc[row, "HR_" + patient + "_First_DRB3/4/5"] = rule[4]
+                    data.loc[row, "HR_" + patient + "_First_DQ_Split"] = rule[6]
+                    data.loc[row, "HR_" + patient + "_First_DQA"] = rule[7]
+                if rule[0] == code2:
+                    data.loc[row, "HR_" + patient + "_Second_DR_Split"] = rule[2]
+                    data.loc[row, "HR_" + patient + "_Second_DRB3/4/5"] = rule[4]
+                    data.loc[row, "HR_" + patient + "_Second_DQ_Split"] = rule[6]
+                    data.loc[row, "HR_" + patient + "_Second_DQA"] = rule[7]
+        elif code1.startswith("b"):
+            code1 = int(code1.lstrip("b"))
+            code2 = int(code2.lstrip("b"))
+            for rule in classII:
+                if rule[0] == code1:
+                    data.loc[row, "HR_" + patient + "_First_DR_Split"] = rule[2]
+                    data.loc[row, "HR_" + patient + "_First_DRB3/4/5"] = rule[4]
+                    data.loc[row, "HR_" + patient + "_Second_DQ_Split"] = rule[6]
+                    data.loc[row, "HR_" + patient + "_Second_DQA"] = rule[7]
+                if rule[0] == code2:
+                    data.loc[row, "HR_" + patient + "_Second_DR_Split"] = rule[2]
+                    data.loc[row, "HR_" + patient + "_Second_DRB3/4/5"] = rule[4]
+                    data.loc[row, "HR_" + patient + "_First_DQ_Split"] = rule[6]
+                    data.loc[row, "HR_" + patient + "_First_DQA"] = rule[7]
+
+
+assimilate_classII("Recip")
+assimilate_classII("Donor")
+
+data.drop(columns= ['Recip_First_Sub', 'Recip_Second_Sub', 'Donor_First_Sub', 'Donor_Second_Sub'])
 
 # save file into a different excel file
 
@@ -340,11 +389,3 @@ data.to_excel(writer,sheet_name='Main data')
 writer.save()
 
 print("Success! Your new file %s is ready to view" % output_file_name)
-
-"""
-writer = pd.ExcelWriter("classII_codes.xlsx", engine = 'xlsxwriter')
-
-data.to_excel(writer,sheet_name='Main data')
-writer.save()
-
-"""
