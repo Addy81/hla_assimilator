@@ -45,7 +45,6 @@ for row in range(rule_rows):
         row_sublist.append(rules.loc[row][column])
     classII.append(row_sublist)
 
-classIIb = classII.copy()
 
 for x in classII:
     print(x)
@@ -189,6 +188,24 @@ def assign_sub_codes(patient):
 
 assign_sub_codes("Recip")
 
+print (data["Recip_First_Sub"])
+
+def assimilate_classII(patient):
+    """ Function that substitutes low-res with high-res class II alleles"""
+
+    for row in range(rows):
+        code1 = data.loc[row, patient + "_First_Sub"]
+        code2 = data.loc[row, patient + "_Second_Sub"]
+        #print(code1,code2)
+
+        if type(code1) != str or type(code2) != str:
+            continue
+        elif code1.startswith("a"):
+            print (first_code)
+        elif code1.startswith("b"):
+            print(second_code)
+            
+assimilate_classII("Recip")
 
 #assign_sub_codes("Donor")
 
