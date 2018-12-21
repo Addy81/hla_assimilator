@@ -1,0 +1,142 @@
+Row Reason First_DR Second_DR First_DQ Second_DQ " " First_A Second_A First_B Second_B First_C Second_C
+6 "Dq alleles splits are missing" DR1 DR4 DQ5 DQ3 "  " A*03:01 A*11:01 B*14:01 B*35:01 C*04:01 C*08:02
+15 "DR alleles splits are missing" DR3 DR8 DQ2 DQ4 "  " A*01:01 A*02:01 B*08:01 B*38:01 C*07:01 C*12:03
+38 "Options don't work (1)" DR1 DR17 DQ5 DQ7 "  " A*01:01 A*03:01 B*08:01 B*35:01 C*04:01 C*07:01
+40 "DQ alleles missing" DR15 DR7 nan nan "  " A*03:01 A*29:02 B*07:02 B*44:02 nan nan
+54 "Options don't work(2)" DR17 DR7 DQ6 DQ2 "  " A*01:01 A*29:02 B*08:01 B*39:01 C*07:01 C*12:03
+59 "Dq alleles splits are missing" DR4 DR4 DQ3 DQ3 "  " A*02:01 A*31:01 B*15:01 B*40:01 Cw3 Cw3
+70 "DR alleles splits are missing" DR3 DR4 nan nan "  " A*01:01 A*31:01 B*08:01 B*40:01 nan nan
+84 "Options don't work (1)" DR15 DR18 DQ6 DQ2 "  " A*03:01 A*23:01 B*15:16 B*58:01 C*07:01 C*14:02
+85 "Dq alleles splits are missing" DR17 DR4 DQ2 DQ3 "  " A*01:01 A*02:01 B*08:01 B*44:02 C*05:01 C*07:01
+86 "Options don't work(2)" DR17 DR14 DQ6 DQ2 "  " A*01:01 A*68:01 B*08:01 B*15:01 C*03:03 C*07:01
+95 "Dq alleles splits are missing" DR15 DR4 DQ6 DQ3 "  " A*02:01 A*24:02 B*52:01 B*44:02 nan nan
+98 "Options don't work(3)" DR18 DR13 DQ5 DQ7 "  " A*01:01 A*03:01 B*57:01 B*35:01 C*03:02 C*18:01
+100 "Dq alleles splits are missing" DR1 DR4 DQ5 DQ3 "  " A*03:01 A*24:02 B*15:01 B*47:01 nan nan
+108 "DQ alleles missing" DR17 DR17 nan nan "  " A*01:01 A*01:01 B*08:01 B*08:01 C*07:01 C*07:01
+114 "Dq alleles splits are missing" DR15 DR4 DQ6 DQ3 "  " A*01:01 A*68:01 B*08:01 B*44:02 C*07:01 C*07:01
+134 "DQ alleles missing" DR4 DR7 nan nan "  " A*03:01 A*03:01 B*07:02 B*44:02 nan nan
+144 "Dq alleles splits are missing" DR11 DR13 DQ6 DQ3 "  " A*01:01 A*02:01 B*18:01 B*27:05 C*01:02 C*07:01
+148 "DR alleles splits are missing" DR1404 DR7 DQ5 DQ9 "  " A*01:01 A*24:02 B*07:02 B*57:01 C*06:02 C*07:02
+152 "Options don't work (1)" DR4 DR13 DQ8 DQ9 "  " A*02:01 A*02:01 B*51:01 B*15:01 C*01:02 C*03:04
+166 "Options don't work(3)" DR18 DR12 DQ5 DQ2 "  " A*33:01 A*68:01 B*58:01 B*53:01 C*04:01 C*06:02
+168 "DQ alleles missing" DR15 DR4 nan nan "  " A*03:01 A*11:01 B*07:02 B*40:01 nan nan
+171 "Options don't work(2)" DR11 DR11 DQ5 DQ6 "  " A*30:01 A*36:01 B*57:01 B*53:01 C*04:01 C*18:01
+173 "DQ alleles missing" DR4 DR13 nan nan "  " A*02:01 A*02:01 B*44:02 B*55:01 nan nan
+178 "Dq alleles splits are missing" DR17 DR7 DQ2 DQ3 "  " A*01:01 A*02:01 B*08:01 B*57:01 C*06:02 C*07:01
+187 "Dq alleles splits are missing" DR4 DR7 DQ3 DQ3 "  " A*24:02 A*26:01 B*39:01 B*58:01 nan nan
+193 "DQ alleles missing" DR13 DR7 nan nan "  " A*02:01 A*29:02 B*44:02 B*40:01 nan nan
+201 "Dq alleles splits are missing" DR16 DR9 DQ5 DQ3 "  " A*02:01 A*24:02 B*38:01 B*46:01 nan nan
+269 "DQ alleles missing" DR17 DR7 nan nan "  " A*03:01 A*68:01 B*08:01 B*50:01 nan nan
+287 "DR alleles splits are missing" DR3 DR3 DQ2 DQ2 "  " A*01:01 A*32:01 B*08:01 B*08:01 nan nan
+291 "DR alleles splits are missing" DR3 DR4 DQ2 DQ3 "  " A*01:01 A*03:01 B*07:02 B*08:01 nan nan
+295 "DQ alleles missing" DR4 DR8 nan nan "  " A*02:01 A*02:01 B*44:02 B*40:01 nan nan
+296 "DQ alleles missing" DR1 DR16 nan nan "  " A*02:01 A*24:02 B*07:02 B*27:05 C*02:02 C*07:02
+315 "DR alleles splits are missing" DR1 DR3 DQ5 DQ2 "  " A*01:01 A*01:01 B*08:01 B*35:01 nan nan
+328 "DR alleles splits are missing" DR1 DR3 DQ5 DQ2 "  " A*01:01 A*03:01 B*08:01 B14 nan nan
+333 "Dq alleles splits are missing" DR15 DR4 DQ6 DQ3 "  " A*25:01 A28 B*18:01 B*40:01 nan nan
+347 "Dq alleles splits are missing" DR15 DR17 DQ1 DQ2 "  " A*01:01 A*02:01 B*08:01 B*44:02 nan nan
+359 "DR alleles splits are missing" DR1 DR3 nan nan "  " A*02:01 A*02:01 B*08:01 B*27:05 nan nan
+380 "DQ alleles missing" DR17 DR17 nan nan "  " A*02:01 A*24:02 B*07:02 B*08:01 nan nan
+408 "DQ alleles missing" DR4 DR11 nan nan "  " A*02:01 A*24:02 B*13:01 B*35:01 nan nan
+411 "Options don't work(3)" DR13 DR13 DQ9 DQ9 "  " A*66:01 A*66:01 B*58:01 B*58:01 C*06:02 C*06:02
+422 "DQ alleles missing" DR13 DR7 nan nan "  " A*02:01 A*31:01 B*14:01 B*40:01 C*03:04 C*08:02
+432 "Options don't work (1)" DR17 DR9 DQ2 DQ8 "  " A*02:01 A*32:01 B*18:01 B*50:01 C*02:02 C*06:02
+440 "Options don't work (1)" DR17 DR17 DQ2 DQ7 "  " A*01:01 A*32:01 B*08:01 B*08:01 C*07:01 C*07:01
+442 "DQ alleles missing" DR1 DR4 nan nan "  " A*02:01 A*02:01 B*15:01 B*35:01 nan nan
+452 "Options don't work (1)" DR17 DR9 DQ2 DQ8 "  " A*02:01 A*26:01 B*08:01 B*40:05 C*03:02 C*07:01
+468 "Options don't work(2)" DR13 DR7 DQ5 DQ2 "  " A*30:01 A*29:02 B*44:02 B*42:01 C*16:01 C*17:01
+496 "Dq alleles splits are missing" DR18 DR8 DQ3 DQ4 "  " A*01:01 A*02:01 B*51:01 B*18:01 C*02:02 C*18:01
+557 "Options don't work (1)" DR11 DR8 DQ7 DQ9 "  " A*02:01 A*11:01 B*51:01 B*40:02 C*14:02 C*14:02
+591 "Options don't work(3)" DR11 DR7 DQ9 DQ9 "  " A*01:01 A*03:01 B*57:01 B*49:01 C*06:02 C*07:01
+609 "DR alleles splits are missing" DR3 DR7 nan nan "  " A*01:01 A*32:01 B*08:01 B14 C*07:01 C*08:01
+615 "DR alleles splits are missing" DR15 DR3 DQ6 DQ2 "  " A*01:01 A*03:01 B*07:02 B*08:01 C*07:02 C*07:02
+620 "Options don't work (1)" DR15 DR17 DQ6 DQ7 "  " A*02:01 A*03:01 B*07:02 B*18:01 C*05:01 C*07:02
+629 "DR alleles splits are missing" DR2 DR6 DQ5 DQ6 "  " A*03:01 A*24:02 B*07:02 B22 nan nan
+642 "Options don't work(3)" DR11 DR15 DQ5 DQ5 "  " A*02:01 A*29:02 B*07:02 B*44:02 C*07:02 C*07:02
+644 "Dq alleles splits are missing" DR15 DR15 DQ1 DQ1 "  " A*02:01 A*26:01 B*07:02 B*07:02 nan nan
+682 "DQ alleles missing" DR4 DR9 nan nan "  " A*02:01 A*03:01 B*44:02 B*18:01 C*05:01 C*07:01
+691 "DR alleles splits are missing" DR3 DR4 DQ2 DQ3 "  " A*01:01 A*02:01 B*08:01 B*27:05 C*02:02 C*07:01
+693 "Options don't work(2)" DR13 DR13 DQ5 DQ6 "  " A*23:01 A*30:01 B*57:01 B*15:03 C*02:02 C*18:01
+694 "DQ alleles missing" DR1 DR15 nan nan "  " A*01:01 A*03:01 B*08:01 B*35:01 nan nan
+702 "Options don't work(2)" DR4 DR13 DQ5 DQ4 "  " A*03:01 A*03:01 B*07:02 B15 C*07:02 C*07:02
+717 "DQ alleles missing" DR4 DR7 nan nan "  " A*02:01 A*25:01 B*44:02 B*57:01 C*05:01 C*06:02
+722 "Dq alleles splits are missing" DR1 DR4 DQ5 DQ3 "  " A*01:01 A*01:01 B*08:01 B*08:01 C*07:01 C*07:01
+769 "Dq alleles splits are missing" DR1 DR7 DQ1 DQ1 "  " A*11:01 A*32:01 B*35:01 B*35:01 C*04:01 C*04:01
+776 "DR alleles splits are missing" DR3 DR10 DQ5 DQ2 "  " A*01:01 A*01:01 B*08:01 B*49:01 C*07:01 C*07:01
+789 "Options don't work (1)" DR17 DR7 DQ2 DQ7 "  " A*01:01 A*30:01 B*14:02 B*18:01 C*05:01 C*08:02
+811 "Options don't work(2)" DR13 DR13 DQ5 DQ6 "  " A*01:01 A*03:01 B*15:16 B*15:16 C*07:01 C*07:01
+842 "DR alleles splits are missing" DR1 DR3 DQ5 DQ2 "  " A*01:01 A*02:01 B*08:01 B*35:01 nan nan
+877 "Dq alleles splits are missing" DR15 DR13 DQ6 DQ3 "  " A*33:01 A*33:01 B*08:01 B*15:03 C*02:02 C*03:02
+880 "Options don't work(2)" DR4 DR14 DQ6 DQ8 "  " A*02:01 A*24:02 B*44:02 B*57:01 C*05:01 C*07:01
+886 "DQ alleles missing" DR1 DR4 nan nan "  " A*02:01 A*31:01 B*27:05 B*27:05 nan nan
+922 "Dq alleles splits are missing" DR15 DR4 DQ6 DQ3 "  " A*02:01 A*03:01 B*07:02 B*15:01 Cw3 C*07:02
+972 "Dq alleles splits are missing" DR15 DR4 DQ6 DQ3 "  " A*01:01 A*02:01 B*07:02 B*40:01 Cw3 C*07:02
+980 "Options don't work(3)" DR17 DR15 DQ5 DQ6 "  " A*02:01 A*02:01 B*44:02 B*40:01 C*03:04 C*07:01
+1002 "DR alleles splits are missing" DR3 DR4 DQ2 DQ3 "  " A*01:01 A*02:01 B*08:01 B*44:02 C*05:01 C*07:01
+1017 "Dq alleles splits are missing" DR1 DR4 DQ5 DQ3 "  " A*01:01 A*11:01 B*44:02 B15 Cw3 Cw3
+1040 "Dq alleles splits are missing" DR4 DR13 DQ6 DQ3 "  " A*02:01 A*24:02 B*44:02 B*15:01 nan nan
+1043 "DR alleles splits are missing" DR3 DR4 DQ2 DQ3 "  " A*01:01 A*02:01 B*08:01 B*44:02 nan nan
+1045 "DR alleles splits are missing" DR3 DR8 DQ2 DQ4 "  " A*01:01 A*02:01 B*08:01 B*39:01 C*07:01 C*07:01
+1081 "DR alleles splits are missing" DR3 DR7 DQ2 DQ2 "  " A*01:01 A*32:01 B*08:01 B14 nan nan
+1154 "Options don't work(2)" DR17 DR14 DQ6 DQ2 "  " A*02:01 A*33:01 B*44:02 B*14:02 C*07:01 C*08:02
+1162 "Options don't work(2)" DR11 DR13 DQ5 DQ7 "  " A*02:01 A*30:01 B*42:01 B*53:01 C*04:01 C*07:01
+1189 "DR alleles splits are missing" DR17 DR1404 DQ5 DQ2 "  " A*01:01 A*29:02 B*08:01 B*44:02 C*07:01 C*16:01
+1222 "Options don't work(3)" DR9 DR4 DQ8 DQ4 "  " A*02:01 A*02:01 B*40:05 B*41:01 C*03:02 C*17:01
+1237 "Options don't work(3)" DR11 DR1 DQ5 DQ5 "  " A*33:01 A*74:01 B*45:01 B*18:01 C*02:02 C*16:01
+1274 "DQ alleles missing" DR13 DR8 nan nan "  " A*24:02 A28 B*44:02 B*39:01 nan nan
+1319 "Dq alleles splits are missing" DR4 DR4 DQ3 DQ3 "  " A*02:01 A*02:01 B*51:01 B*44:02 C*01:02 C*05:01
+1348 "Options don't work (1)" DR15 DR17 DQ6 DQ7 "  " A*24:02 A*31:01 B*08:01 B*27:05 C*07:01 C*15:02
+1361 "DR alleles splits are missing" DR15 DR3 DQ6 DQ2 "  " A*01:01 A*03:01 B*07:02 B*08:01 C*07:02 C*07:02
+1389 "DR alleles splits are missing" DR3 DR4 DQ2 DQ3 "  " A*01:01 A*02:01 B*08:01 B*35:01 C*04:01 C*07:01
+1411 "Options don't work(2)" DR7 DR9 DQ8 DQ9 "  " A*02:01 A*11:01 B*51:01 B*57:01 C*06:02 C*14:02
+1417 "Options don't work (1)" DR11 DR14 DQ7 DQ8 "  " A*24:02 A*11:01 B*40:01 B*40:01 C*03:04 C*07:01
+1418 "Options don't work(3)" DR16 DR14 DQ7 DQ7 "  " A*02:01 A*02:01 B*35:01 B*48:01 C*04:01 C*08:01
+1455 "Options don't work(3)" DR11 DR10 DQ5 DQ2 "  " A*24:02 A*33:01 B*58:01 B*56:01 C*03:02 C*04:01
+1467 "Options don't work(2)" DR4 DR10 DQ6 DQ8 "  " A*01:01 A*02:01 B*15:01 B*37:01 C*03:03 C*06:02
+1513 "Options don't work(3)" DR4 DR1 DQ5 DQ5 "  " A*03:01 A*68:01 B*51:01 B*27:05 C*12:03 C*14:02
+1524 "Options don't work(3)" DR17 DR13 DQ6 DQ6 "  " A*01:01 A*03:01 B*08:01 B*15:01 C*03:04 C*07:01
+1533 "Dq alleles splits are missing" DR15 DR4 DQ6 DQ3 "  " A*24:02 A*68:01 B*55:01 B*55:01 Cw3 Cw3
+1567 "Options don't work (1)" DR11 DR13 DQ6 DQ8 "  " A*02:01 A*26:01 B*49:01 B*55:01 C*03:03 C*07:01
+1599 "DQ alleles missing" DR103 DR15 nan nan "  " A*02:01 A*24:02 B*07:02 B*35:01 C*04:01 C*07:02
+1607 "Options don't work(2)" DR18 DR8 DQ5 DQ4 "  " A*34:01 A*66:01 B*42:01 B*15:03 C*02:02 C*17:01
+1659 "Options don't work (1)" DR1 DR17 DQ5 DQ6 "  " A*01:01 A*24:02 B*08:01 B*15:01 C*04:01 C*07:01
+1676 "DR alleles splits are missing" DR3 DR11 DQ2 DQ3 "  " A*01:01 A*23:01 B*08:01 B*49:01 C*07:01 C*07:01
+1686 "Options don't work(3)" DR8 DR10 DQ5 DQ5 "  " A*24:02 A*29:02 B*07:02 B*15:10 C*15:02 C*16:01
+1697 "Options don't work(2)" DR13 DR13 DQ5 DQ6 "  " A*02:01 A*29:02 B*45:01 B*41:01 C*07:01 C*16:01
+1802 "Options don't work(3)" DR4 DR7 DQ2 DQ2 "  " A*24:02 A*25:01 B*18:01 B*41:01 C*12:03 C*17:01
+1822 "Options don't work(3)" DR11 DR7 DQ5 DQ2 "  " A*30:01 A*68:01 B*57:01 B*58:01 C*07:01 C*08:01
+1839 "Dq alleles splits are missing" DR1 DR8 DQ5 DQ3 "  " A*31:01 A*74:01 B*51:01 B*58:01 C*06:02 C*15:02
+1858 "Options don't work(2)" DR17 DR13 DQ5 DQ2 "  " A*23:01 A*66:01 B*35:01 B*53:01 C*04:01 C*04:01
+2002 "Options don't work(3)" DR15 DR13 DQ2 DQ7 "  " A*31:01 A*68:01 B*44:02 B*15:16 C*04:01 C*14:02
+2010 "Options don't work(2)" DR4 DR4 DQ2 DQ8 "  " A*02:01 A*24:02 B*44:02 B*27:05 C*02:02 C*05:01
+2059 "Options don't work(3)" DR7 DR4 DQ8 DQ8 "  " A*02:01 A*23:01 B*53:01 B*67:01 C*04:01 C*12:03
+2157 "Options don't work(3)" DR17 DR11 DQ6 DQ7 "  " A*02:01 A*03:01 B*51:01 B*49:01 C*07:01 C*15:02
+2209 "Options don't work(2)" DR13 DR13 DQ5 DQ6 "  " A*02:01 A*68:01 B*45:01 B*57:01 C*16:01 C*18:01
+2217 "Options don't work(2)" DR11 DR8 DQ2 DQ7 "  " A*02:01 A*34:01 B*49:01 B*53:01 C*07:01 C*16:01
+2265 "Options don't work(3)" DR11 DR7 DQ5 DQ2 "  " A*02:01 A*03:01 B*51:01 B*58:01 C*06:02 C*16:01
+2266 "Options don't work(3)" DR1 DR17 DQ6 DQ2 "  " A*01:01 A*24:02 B*07:02 B*08:01 C*07:02 C*07:02
+2339 "Dq alleles splits are missing" DR8 DR8 DQ3 DQ4 "  " A*03:01 A*03:01 B*53:01 B*81:01 C*04:01 C*04:01
+2357 "Options don't work(3)" DR11 DR4 DQ8 DQ8 "  " A*02:01 A*29:02 B*07:02 B*49:01 C*07:02 C*07:02
+2377 "Options don't work(2)" DR11 DR13 DQ5 DQ7 "  " A*30:01 A*30:01 B*07:02 B*15:10 C*03:02 C*15:02
+2400 "Options don't work (1)" DR4 DR13 DQ8 DQ9 "  " A*02:01 A*30:01 B*49:01 B*15:03 C*02:02 C*07:01
+2456 "Options don't work (1)" DR17 DR13 DQ2 DQ8 "  " A*11:01 A*32:01 B*08:01 B*35:01 C*04:01 C*07:01
+2499 "Options don't work (1)" DR15 DR4 DQ6 DQ2 "  " A*02:01 A*02:01 B*44:02 B*18:01 C*05:01 C*12:03
+2522 "Options don't work(2)" DR4 DR4 DQ2 DQ8 "  " A*02:01 A*24:02 B*40:01 B*73:01 C*03:04 C*15:02
+2529 "Options don't work (1)" DR13 DR13 DQ2 DQ9 "  " A*66:01 A*33:01 B*58:01 B*53:01 C*04:01 C*06:02
+2555 "Options don't work(3)" DR11 DR10 DQ5 DQ5 "  " A*30:01 A*69:01 B*51:01 B*15:03 C*04:01 C*16:01
+2556 "Options don't work(2)" DR11 DR13 DQ5 DQ6 "  " A*01:01 A*30:01 B*57:01 B*15:03 C*02:02 C*18:01
+2580 "Options don't work(2)" DR11 DR13 DQ5 DQ7 "  " A*01:01 A*02:01 B*08:01 B*44:02 C*05:01 C*07:01
+2602 "Options don't work(3)" DR4 DR13 DQ6 DQ9 "  " A*02:01 A*02:01 B*44:02 B*49:01 C*07:01 C*14:02
+2677 "Options don't work(2)" DR11 DR13 DQ5 DQ7 "  " A*02:01 A*36:01 B*35:01 B*53:01 C*04:01 C*16:01
+2678 "Options don't work(2)" DR4 DR14 DQ6 DQ8 "  " A*24:02 A*33:01 B*58:01 B*50:01 C*03:02 C*06:02
+2683 "DR alleles splits are missing" DR4 DR1404 DQ5 DQ7 "  " A*01:01 A*11:01 B*44:02 B*40:02 C*05:01 C*15:02
+2693 "Options don't work (1)" DR13 DR8 DQ7 DQ9 "  " A*01:01 A*03:01 B*44:02 B*14:02 C*08:02 C*14:02
+2698 "Options don't work(2)" DR11 DR11 DQ5 DQ7 "  " A*01:01 A*68:01 B*51:01 B*08:01 C*07:01 C*15:02
+2717 "Options don't work(3)" DR13 DR12 DQ5 DQ5 "  " A*01:01 A*33:01 B*44:02 B*58:01 C*04:01 C*06:02
+2752 "Options don't work(2)" DR4 DR13 DQ5 DQ8 "  " A*23:01 A*30:01 B*57:01 B*58:01 C*07:01 C*18:01
+2778 "Options don't work(3)" DR13 DR13 DQ9 DQ9 "  " A*31:01 A*31:01 B*45:01 B*45:01 C*04:01 C*04:01
+2782 "Options don't work(3)" DR13 DR9 DQ5 DQ9 "  " A*03:01 A*25:01 B*15:01 B*18:01 C*03:03 C*12:03
+2784 "Options don't work(3)" DR11 DR13 DQ5 DQ5 "  " A*02:01 A*36:01 B*45:01 B*53:01 C*04:01 C*16:01
+2836 "Options don't work(2)" DR4 DR8 DQ2 DQ4 "  " A*01:01 A*02:01 B*57:01 B*27:05 C*02:02 C*04:01
+2843 "Options don't work (1)" DR15 DR15 DQ6 DQ7 "  " A*03:01 A*11:01 B*44:02 B*48:01 C*05:01 C*08:01
+2859 "Options don't work(2)" DR17 DR13 DQ5 DQ2 "  " A*02:01 A*74:01 B*44:02 B*53:01 C*04:01 C*04:01

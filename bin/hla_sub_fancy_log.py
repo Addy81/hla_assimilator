@@ -146,7 +146,7 @@ def c_assimilation(to_replace, general_rule, exc1, exc2=(None, None),exc3=(None,
                     b2 = data.iloc[row][b2_col]
 
                     if pd.isnull(data.loc[row, c_col]):
-                        pass
+                        classI_log_writer.writerow([row, "C alleles are missing", data.loc[row, c_col]])
                     elif c == to_replace and ((b1 == exc1[0]) or (b2 == exc1[0])):
                         data.loc[row, c_col] = re.sub(to_replace, exc1[1], c)
                     elif c == to_replace and ((b1 == exc2[0]) or (b2 == exc2[0])):
@@ -154,8 +154,14 @@ def c_assimilation(to_replace, general_rule, exc1, exc2=(None, None),exc3=(None,
                     elif c == to_replace and ((b1 == exc3[0]) or (b2 == exc3[0])):
                         data.loc[row, c_col] = re.sub(to_replace, exc2[1], c)
                     else:
-                        classI_log_writer.writerow([row, "C substituted with general rule", data.loc[row,c_col]])
-                        data.loc[row, c_col] = re.sub(to_replace, general_rule, c)
+                        if c == 'Cw7':
+                            classI_log_writer.writerow([row, "C substituted with general rule", data.loc[row,c_col]])
+                            data.loc[row, c_col] = re.sub(to_replace, general_rule, c)
+                        elif c == 'Cw3':
+                            classI_log_writer.writerow([row, "C split missing", data.loc[row, c_col]])
+                        else:
+                            data.loc[row, c_col] = re.sub(to_replace, general_rule, c)
+
 
 
 # Function that replaces Cw alleles based on the B allele correlation format of function is:
@@ -276,29 +282,37 @@ def assign_sub_codes(patient):
 
     with open((patient + "_classII_log.csv"), "w+") as log_file:
         log_writer = csv.writer(log_file,delimiter=' ', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-        log_writer.writerow(['Row','Reason','First_DR','Second_DR','First_DQ','Second_DQ'])
+        log_writer.writerow(['Row','Reason','First_DR','Second_DR','First_DQ','Second_DQ'," ",'First_A','Second_A','First_B','Second_B','First_C','Second_C'])
 
         for row in range(rows):
             R1 = data.loc[row, ("HR_" + patient + "_First_DR_Split")]
             R2 = data.loc[row, "HR_" + patient + "_Second_DR_Split"]
             Q1 = data.loc[row, "HR_" + patient + "_First_DQ_Split"]
             Q2 = data.loc[row, "HR_" + patient + "_Second_DQ_Split"]
+            A1 = data.loc[row, ("HR_" + patient + "_First_A_Split")]
+            A2 = data.loc[row, "HR_" + patient + "_Second_A_Split"]
+            B1 = data.loc[row, "HR_" + patient + "_First_B_Split"]
+            B2 = data.loc[row, "HR_" + patient + "_Second_B_Split"]
+            C1 = data.loc[row, "HR_" + patient + "_First_C_Split"]
+            C2 = data.loc[row, "HR_" + patient + "_Second_C_Split"]
+
+
             first_sub = patient + "_First_Sub"
             second_sub = patient + "_Second_Sub"
             printed_options = str(R1) + "," + str(R2) + "," + str(Q1) + "," + str(Q2)
 
             if (type(R1) != str) or (type(R2) != str):
-                log_writer.writerow([row,'DR alleles missing', R1, R2, Q1,Q2])
+                log_writer.writerow([row,'DR alleles missing', R1, R2, Q1,Q2,"  ", A1,A2,B1,B2,C1,C2])
                 continue
             elif (R1 not in dr_splits) or (R2 not in dr_splits):
-                log_writer.writerow([row, 'DR alleles splits are missing', R1, R2, Q1, Q2])
+                log_writer.writerow([row, 'DR alleles splits are missing', R1, R2, Q1, Q2,"  ", A1,A2,B1,B2,C1,C2])
                 continue
             else:
                 if (type(Q1) != str) or (type(Q2) != str):
-                    log_writer.writerow([row, 'DQ alleles missing', R1, R2, Q1, Q2])
+                    log_writer.writerow([row, 'DQ alleles missing', R1, R2, Q1, Q2,"  ", A1,A2,B1,B2,C1,C2])
                     continue
                 elif (Q1 not in dq_splits) or (Q2 not in dq_splits):
-                    log_writer.writerow([row, 'Dq alleles splits are missing', R1, R2, Q1, Q2])
+                    log_writer.writerow([row, 'Dq alleles splits are missing', R1, R2, Q1, Q2,"  ", A1,A2,B1,B2,C1,C2])
                     continue
                 else:
                     dq_options = [Q1, Q2]
@@ -316,7 +330,7 @@ def assign_sub_codes(patient):
                                         data.loc[row, second_sub] = "a" + str(rule[0])
                                         del dq_options[0]
                             else:
-                                log_writer.writerow([row, "Options don't work (1)", R1, R2, Q1, Q2])
+                                log_writer.writerow([row, "Options don't work (1)", R1, R2, Q1, Q2,"  ", A1,A2,B1,B2,C1,C2])
                                 break
                         elif dq_options[1] in options.get(R1):
                             for rule in classII:
@@ -330,10 +344,10 @@ def assign_sub_codes(patient):
                                         data.loc[row, second_sub] = "b" + str(rule[0])
                                         del dq_options[0]
                             else:
-                                log_writer.writerow([row, "Options don't work(2)", R1, R2, Q1, Q2])
+                                log_writer.writerow([row, "Options don't work(2)", R1, R2, Q1, Q2,"  ", A1,A2,B1,B2,C1,C2])
                                 break
                         else:
-                            log_writer.writerow([row, "Options don't work(3)", R1, R2, Q1, Q2])
+                            log_writer.writerow([row, "Options don't work(3)", R1, R2, Q1, Q2,"  ", A1,A2,B1,B2,C1,C2])
                             break
 
 
