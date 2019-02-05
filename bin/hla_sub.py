@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 #
 #
 #
@@ -25,7 +25,7 @@ else:
     output_file = '../results/' + sys.argv[2]
 
 
-rules_path = 'classII_rules.xlsx'
+#rules_path = 'classII_rules.xlsx'
 data = pd.read_excel(data_file, "Main data")
 rows = data.shape[0]
 rules = pd.read_excel('classII_rules.xlsx')
@@ -274,7 +274,12 @@ dr_broads = ["DR5", "DR6", "DR2", "DR3"]
 def assign_sub_codes(patient):
     """function that matches DR-DQs and assigns a code to be then substituted"""
 
-    with open((patient + "_classII_log.csv"), "w+") as log_file:
+    dq_splits = ["DQ2","DQ4","DQ5","DQ6","DQ7","DQ8","DQ9"]
+    dr_splits = ["DR1","DR103","DR4","DR7","DR8","DR9","DR10","DR11","DR12","DR13","DR14","DR15","DR16","DR17","DR18"]
+    dq_broads = ["DQ1", "DQ3"]
+    dr_broads = ["DR5", "DR6", "DR2", "DR3"]
+    
+    with open((log_path + "/" + patient + "_classII_log.csv"), "w+") as log_file:
         log_writer = csv.writer(log_file,delimiter=' ', quotechar='"', quoting=csv.QUOTE_MINIMAL)
         log_writer.writerow(['Row','Reason','First_DR','Second_DR','First_DQ','Second_DQ'])
 
