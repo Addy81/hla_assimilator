@@ -403,7 +403,11 @@ def main(args):
     assimilate_classII(data,"Donor",classII_rules)
 
     print("Tidying up your file.\n")
-    data.drop(columns= ['Recip_First_Sub', 'Recip_Second_Sub', 'Donor_First_Sub', 'Donor_Second_Sub'])
+    drop_columns= ['Recip_First_Sub', 'Recip_Second_Sub', 'Donor_First_Sub', 'Donor_Second_Sub']
+
+    for column in drop_columns:
+        del data[column]
+
 
     # save file into a different excel file
 
