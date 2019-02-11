@@ -1,6 +1,5 @@
 Row Reason First_DR Second_DR First_DQ Second_DQ
 4 "DR alleles splits are missing" DR*0103 DR15 DQ5 DQ6
-9 "DR alleles missing" nan nan DQ2 DQ7
 12 "DR alleles splits are missing" DR3 DR4 DQ2 DQ7
 14 "DR alleles splits are missing" DR51 DR52 DQ6 DQ7
 18 "DR alleles splits are missing" DR*0301/03XX DR*0301/03XX DQ2 DQ2
@@ -51,11 +50,8 @@ Row Reason First_DR Second_DR First_DQ Second_DQ
 172 "DR alleles splits are missing" DR*03:01/03:XX DR4 DQ2 DQ8
 178 "DR alleles splits are missing" DR13 DR*03:01/03:XX DQ2 DQ6
 182 "DR alleles missing" nan nan DQ2 DQ9
-186 "DR alleles missing" nan nan DQ5 DQ6
 189 "DR alleles splits are missing" DR13 DR*03:01/03:XX DQ2 DQ6
 190 "DR alleles splits are missing" DR13 DR3 DQ2 DQ6
-191 "DR alleles missing" nan nan DQ6 DQ7
-195 "DR alleles missing" nan nan DQ5 DQ2
 200 "DR alleles splits are missing" DR*03:01/03:XX DR*04:01/04:XX DQ2 DQ7
 202 "DR alleles splits are missing" DR*03:01/03:XX DR*13:01/13:XX DQ2 DQ6
 204 "DR alleles splits are missing" DR*03:01/03:XX DR4 DQ2 DQ7

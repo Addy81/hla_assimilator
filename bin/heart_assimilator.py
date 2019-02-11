@@ -12,6 +12,9 @@ import numpy as np
 import csv
 import argparse
 
+from datetime import datetime
+
+
 def parse_arguments():
     parser = argparse.ArgumentParser( description='Assimilate low resolution HLA type data.')
     parser.add_argument('input', help='Input excel .xlsx to be analysed')
@@ -168,14 +171,28 @@ def column_swap(data,options,patient):
                 count2 = count2 + 1
         # elif type(DQ1) == float or type(DQ2) == float:
         # pass
+        #print (DR1, count1, DR2,count2, DQ1,DQ2)
         if count1 > 1 and count2 < 2:
-            data.loc[row, "HR_" + patient + "_First_DR_Split"] = DR2
-            data.loc[row, "HR_" + patient + "_Second_DR_Split"] = DR1
+            #data.loc[row, "HR_" + patient + "_First_DR_Split"] = DR2
+            #data.loc[row, "HR_" + patient + "_Second_DR_Split"] =DR1
+            first_column = data.columns.get_loc("HR_" + patient + "_First_DR_Split")
+            second_column = data.columns.get_loc("HR_" + patient + "_Second_DR_Split")
+            original1 = data.columns.get_loc( patient + "_First_DR_Split")
+            original2 = data.columns.get_loc(patient + "_Second_DR_Split")
+
+            data.iat[row,first_column] = DR2
+            data.iat[row,second_column] = DR1
+            data.iat[row,original1] = DR2
+            data.iat[row,original2] = DR1
+        elif (count1 == 2 and count2 == 2) and (DR1 != DR2 and DQ1 != DQ2):
+            print (row, DR1, count1, DR2,count2, DQ1,DQ2)
+
+
     
 def add_sub_column(data,patient):
     """Adds column to store substitution codes"""
 
-    pattern = patient + "_First_DR_Broad"
+    pattern = patient + "_First_DR_Split"
     for column in data.columns:
         column_match = re.match(pattern,column)
         col_index = data.columns.get_loc(pattern)
@@ -193,9 +210,11 @@ def assign_sub_codes(data,options,log_path,patient,classII):
     dq_broads = ["DQ1", "DQ3"]
     dr_broads = ["DR5", "DR6", "DR2", "DR3"]
     rows = data.shape[0]
+    now = datetime.now()
+
 
     
-    with open((log_path + "/" + patient + "_classII_log.csv"), "w+") as log_file:
+    with open((log_path + "/" + now.isoformat() + patient + "_classII_log.csv"), "w+") as log_file:
         log_writer = csv.writer(log_file,delimiter=' ', quotechar='"', quoting=csv.QUOTE_MINIMAL)
         log_writer.writerow(['Row','Reason','First_DR','Second_DR','First_DQ','Second_DQ'])
 
@@ -327,8 +346,8 @@ def main(args):
    
     # Run fill_split function for Recipient and Donor data
     print ("Filling empty split column cells")
-    fill_split(data,'Recip')
-    fill_split(data,'Donor')
+    #fill_split(data,'Recip')
+    #fill_split(data,'Donor')
 
    
     #Copies Split column and adds it next to the original with the prefix HR_ to be substituted
@@ -337,11 +356,15 @@ def main(args):
 
     # when there's the first Cw present - assume homozygous so fill the Second Split column
 
-    print("Filling missing homozygours alleles")
-    fill_hom(data,'Recip', 'C')
-    fill_hom(data,'Donor', 'C')
-    fill_hom(data,'Recip', 'DQ')
-    fill_hom(data,'Donor', 'DQ')
+    print("Filling missing homozygous alleles")
+    
+    genes = ['A','B','C','DR','DQ']
+    for gene in genes:
+
+        fill_hom(data,'Recip', gene)
+        fill_hom(data,'Donor', gene)
+ 
+
     
     # Replace low-res alleles in the HR_ columns using the rule lists above
     print("Assimilating Class I alleles")

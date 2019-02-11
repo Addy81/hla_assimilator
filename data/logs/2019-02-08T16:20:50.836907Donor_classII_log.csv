@@ -1,0 +1,5 @@
+Row Reason First_DR Second_DR First_DQ Second_DQ
+44 "DR alleles missing" nan nan DQn DQn
+118 "Options don't work(3)" DR17 DR4 DQ6 DQ7
+132 "Options don't work(3)" DR11 DR12 DQ5 DQ5
+166 "DR alleles missing" nan DR8 DQ6 DQ4
