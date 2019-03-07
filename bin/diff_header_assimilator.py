@@ -22,7 +22,7 @@ def parse_arguments():
 
 def parse_file(args):
     data_file = args.input
-    data = pd.read_excel(data_file, "Main data")
+    data = pd.read_excel(data_file)
 
     return data
 
@@ -52,7 +52,7 @@ def add_column(dtf,pattern):
     for column in dtf.columns:
         column_match = re.search(pattern,column)
         col_index = dtf.columns.get_loc(column)
-        new_column_name = "HR_" + column
+        new_column_name = column + "_allele"
         if column_match: 
             dtf.insert((col_index + 1), new_column_name,dtf[column])
     
@@ -61,8 +61,8 @@ def fill_hom(data,patient, gene):
     """Assuming when only one allele present it is homozygous
     so this function fills in the equivalent homozygous allele"""
 
-    first = 'HR_' + patient + '_First_'+ gene + '_Split'
-    second =  'HR_' + patient + '_Second_'+ gene + '_Split'
+    first = patient + '_First_'+ gene + '_Split_allele'
+    second = patient + '_Second_'+ gene + '_Split_allele'
 
     for column in data.columns:
         f = re.match(second, column)
@@ -70,7 +70,6 @@ def fill_hom(data,patient, gene):
             data[second] = data[second].fillna(data[first])
         else:
             pass
-
 
 def assimilate_classI(dtf):
     # hard-coded list of rules. This can be parsed to the script instead if preferred.
@@ -82,8 +81,7 @@ def assimilate_classI(dtf):
     C_HR = ["C*01:02","C*02:02","C*04:01","C*03:03","C*05:01","C*06:02","C*12:03","C*14:02","C*15:02","C*17:01","C*18:01",]
 
     for column in dtf.columns:
-        print (column)
-        column_check = re.match('HR_', column)
+        column_check = re.search('_allele', column)
         if column_check:
             dtf[column].replace(to_replace = A_LR, value = A_HR, inplace = True)
             dtf[column].replace(to_replace = B_LR, value = B_HR, inplace = True)
@@ -103,9 +101,9 @@ def c_assimilation(data,to_replace, general_rule, exc1, exc2=(None, None),exc3=(
             for variable in ['First', 'Second']:
                 rows = data.shape[0]
                 for row in range(rows):
-                    c_col = "HR_" + patient + '_' + variable + '_C_Split'
-                    b1_col = "HR_" + patient + '_First_B_Split'
-                    b2_col = "HR_" + patient + '_Second_B_Split'
+                    c_col = patient + '_' + variable + '_C_Split_allele'
+                    b1_col = patient + '_First_B_Split_allele'
+                    b2_col = patient + '_Second_B_Split_allele'
                     c = data.loc[row, c_col]
                     b1 = data.iloc[row][b1_col]
                     b2 = data.iloc[row][b2_col]
@@ -125,14 +123,14 @@ def c_assimilation(data,to_replace, general_rule, exc1, exc2=(None, None),exc3=(
 def add_special_column (dtf,pattern,new_pattern):
     column_patterns = ['Recip_First', 'Recip_Second', 'Donor_First', 'Donor_Second']
     for c_pat in column_patterns:
-        match_pattern = "HR_" + c_pat + pattern
+        match_pattern = c_pat + pattern
         
         for column in dtf.columns:
             column_match =re.match(match_pattern,column)
             col_index= dtf.columns.get_loc(match_pattern)
 
             if column_match:
-                new_column = "HR_" + c_pat + new_pattern
+                new_column = c_pat + new_pattern
                 dtf.insert((col_index+1),new_column,np.nan)
 
 def create_rules(rules):
@@ -154,10 +152,10 @@ def column_swap(data,options,patient):
     for row in range(rows):
         count1 = 0
         count2 = 0
-        DR1 = data.loc[row, "HR_" + patient + "_First_DR_Split"]
-        DR2 = data.loc[row, "HR_" + patient + "_Second_DR_Split"]
-        DQ1 = data.loc[row, "HR_" + patient + "_First_DQ_Split"]
-        DQ2 = data.loc[row, "HR_" + patient + "_Second_DQ_Split"]
+        DR1 = data.loc[row, patient + "_First_DR_Split_allele"]
+        DR2 = data.loc[row, patient + "_Second_DR_Split_allele"]
+        DQ1 = data.loc[row, patient + "_First_DQ_Split_allele"]
+        DQ2 = data.loc[row, patient + "_Second_DQ_Split_allele"]
 
         if DR1 in options.keys() and DR2 in options.keys():
             if DQ1 in options.get(DR1):
@@ -171,8 +169,8 @@ def column_swap(data,options,patient):
         # elif type(DQ1) == float or type(DQ2) == float:
         # pass
         if count1 > 1 and count2 < 2:
-            data.loc[row, "HR_" + patient + "_First_DR_Split"] = DR2
-            data.loc[row, "HR_" + patient + "_Second_DR_Split"] = DR1
+            data.loc[row, patient + "_First_DR_Split_allele"] = DR2
+            data.loc[row,  patient + "_Second_DR_Split_allele"] = DR1
     
 def add_sub_column(data,patient):
     """Adds column to store substitution codes"""
@@ -202,10 +200,10 @@ def assign_sub_codes(data,options,log_path,patient,classII):
         log_writer.writerow(['Row','Reason','First_DR','Second_DR','First_DQ','Second_DQ'])
 
         for row in range(rows):
-            R1 = data.loc[row, ("HR_" + patient + "_First_DR_Split")]
-            R2 = data.loc[row, "HR_" + patient + "_Second_DR_Split"]
-            Q1 = data.loc[row, "HR_" + patient + "_First_DQ_Split"]
-            Q2 = data.loc[row, "HR_" + patient + "_Second_DQ_Split"]
+            R1 = data.loc[row, ( patient + "_First_DR_Split_allele")]
+            R2 = data.loc[row,  patient + "_Second_DR_Split_allele"]
+            Q1 = data.loc[row,  patient + "_First_DQ_Split_allele"]
+            Q2 = data.loc[row,  patient + "_Second_DQ_Split_allele"]
             first_sub = patient + "_First_Sub"
             second_sub = patient + "_Second_Sub"
             printed_options = str(R1) + "," + str(R2) + "," + str(Q1) + "," + str(Q2)
@@ -267,10 +265,10 @@ def assimilate_classII(data,patient,classII):
     for row in range(rows):
         code1 = data.loc[row, patient + "_First_Sub"]
         code2 = data.loc[row, patient + "_Second_Sub"]
-        R1 = data.loc[row, "HR_" + patient + "_First_DR_Split"]
-        R2 = data.loc[row, "HR_" + patient + "_Second_DR_Split"]
-        Q1 = data.loc[row, "HR_" + patient + "_First_DQ_Split"]
-        Q2 = data.loc[row, "HR_" + patient + "_Second_DQ_Split"]
+        R1 = data.loc[row,  patient + "_First_DR_Split_allele"]
+        R2 = data.loc[row,  patient + "_Second_DR_Split_allele"]
+        Q1 = data.loc[row,  patient + "_First_DQ_Split_allele"]
+        Q2 = data.loc[row,  patient + "_Second_DQ_Split_allele"]
         #print(code1,code2)
 
         if type(code1) != str or type(code2) != str:
@@ -280,29 +278,29 @@ def assimilate_classII(data,patient,classII):
             code2 = int(code2.lstrip("a"))
             for rule in classII:
                 if rule[0] == code1:
-                    data.loc[row, "HR_" + patient + "_First_DR_Split"] = rule[2]
-                    data.loc[row, "HR_" + patient + "_First_DRB3/4/5"] = rule[4]
-                    data.loc[row, "HR_" + patient + "_First_DQ_Split"] = rule[6]
-                    data.loc[row, "HR_" + patient + "_First_DQA"] = rule[7]
+                    data.loc[row,  patient + "_First_DR_Split_allele"] = rule[2]
+                    data.loc[row,  patient + "_First_DRB3/4/5_allele"] = rule[4]
+                    data.loc[row,  patient + "_First_DQ_Split_allele"] = rule[6]
+                    data.loc[row,  patient + "_First_DQA_allele"] = rule[7]
                 if rule[0] == code2:
-                    data.loc[row, "HR_" + patient + "_Second_DR_Split"] = rule[2]
-                    data.loc[row, "HR_" + patient + "_Second_DRB3/4/5"] = rule[4]
-                    data.loc[row, "HR_" + patient + "_Second_DQ_Split"] = rule[6]
-                    data.loc[row, "HR_" + patient + "_Second_DQA"] = rule[7]
+                    data.loc[row,  patient + "_Second_DR_Split_allele"] = rule[2]
+                    data.loc[row,  patient + "_Second_DRB3/4/5_allele"] = rule[4]
+                    data.loc[row,  patient + "_Second_DQ_Split_allele"] = rule[6]
+                    data.loc[row,  patient + "_Second_DQA_allele"] = rule[7]
         elif code1.startswith("b"):
             code1 = int(code1.lstrip("b"))
             code2 = int(code2.lstrip("b"))
             for rule in classII:
                 if rule[0] == code1:
-                    data.loc[row, "HR_" + patient + "_First_DR_Split"] = rule[2]
-                    data.loc[row, "HR_" + patient + "_First_DRB3/4/5"] = rule[4]
-                    data.loc[row, "HR_" + patient + "_Second_DQ_Split"] = rule[6]
-                    data.loc[row, "HR_" + patient + "_Second_DQA"] = rule[7]
+                    data.loc[row,  patient + "_First_DR_Split_allele"] = rule[2]
+                    data.loc[row,  patient + "_First_DRB3/4/5_allele"] = rule[4]
+                    data.loc[row,  patient + "_Second_DQ_Split_allele"] = rule[6]
+                    data.loc[row,  patient + "_Second_DQA_allele"] = rule[7]
                 if rule[0] == code2:
-                    data.loc[row, "HR_" + patient + "_Second_DR_Split"] = rule[2]
-                    data.loc[row, "HR_" + patient + "_Second_DRB3/4/5"] = rule[4]
-                    data.loc[row, "HR_" + patient + "_First_DQ_Split"] = rule[6]
-                    data.loc[row, "HR_" + patient + "_First_DQA"] = rule[7]
+                    data.loc[row, patient + "_Second_DR_Split_allele"] = rule[2]
+                    data.loc[row, patient + "_Second_DRB3/4/5_allele"] = rule[4]
+                    data.loc[row, patient + "_First_DQ_Split_allele"] = rule[6]
+                    data.loc[row, patient + "_First_DQA_allele"] = rule[7]
 
 
 def main(args):
@@ -339,12 +337,12 @@ def main(args):
 
     # when there's the first Cw present - assume homozygous so fill the Second Split column
 
-    print("Filling missing homozygous alleles")
+    print("Filling missing homozygours alleles")
     fill_hom(data,'Recip', 'C')
     fill_hom(data,'Donor', 'C')
     fill_hom(data,'Recip', 'DQ')
     fill_hom(data,'Donor', 'DQ')
-
+    
     # Replace low-res alleles in the HR_ columns using the rule lists above
     print("Assimilating Class I alleles")
     assimilate_classI(data)
@@ -363,9 +361,9 @@ def main(args):
     #add a DR51/52/53 and DQA column
     print ("Adding some extra columns.")
 
-    add_special_column(data,'_DR_Split','_DRB3/4/5')     
-    add_special_column(data,'_DQ_Split','_DQA')  
-    
+    add_special_column(data, '_DR_Split_allele', '_DRB3/4/5_allele')
+    add_special_column(data, '_DQ_Split_allele', '_DQA_allele')
+
     # create a list containing all class II rules
     classII_rules = create_rules(rules)
 
