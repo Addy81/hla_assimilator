@@ -122,6 +122,34 @@ def c_assimilation(data,to_replace, general_rule, exc1, exc2=(None, None),exc3=(
                         classI_log_writer.writerow([row, "C substituted with general rule", data.loc[row,c_col]])
                         data.loc[row, c_col] = re.sub(to_replace, general_rule, c)
 
+def cw7_special_cases(data):
+    """replaces Cw7 alleles based on the B allele correlation"""
+    for patient in ['Recip', 'Donor']:
+        for variable in ['First', 'Second']:
+            rows = data.shape[0]
+            for row in range(rows):
+                c_col = "HR_" + patient + '_' + variable + '_C_Split'
+                b1_col = "HR_" + patient + '_First_B_Split'
+                b2_col = "HR_" + patient + '_Second_B_Split'
+                c = data.loc[row, c_col]
+                b1 = data.iloc[row][b1_col]
+                b2 = data.iloc[row][b2_col]
+
+                C0701_options=["B*08:01", "B*15:17", "B*18:01", "B*27:05","B*41:01","B*49:01", "B*51:01", "B*57:01", "B*58:01"]
+                C0702_options = ["B*07:02","B*13:01","B*35:05","B*38:02","B*39:06","B*40:01","B*67:01"]
+
+                if pd.isnull(data.loc[row, c_col]):
+                    pass
+                elif c == 'Cw7' and ((b1 == "B*44:02") or (b2 == "B*44:02")):
+                    data.loc[row, c_col] = re.sub('Cw7', 'C*07:04', c)
+                elif c == to_replace and ((b1 in C0701_options) or (b2 in C0701_options)):
+                    data.loc[row, c_col] = re.sub('Cw7', 'C*07:01', c)
+                elif c == to_replace and ((b1 in C0702_options) or (b2 in C0702_options)):
+                    data.loc[row, c_col] = re.sub('Cw7', 'C*07:02', c)
+                else:
+                    data.loc[row, c_col] = re.sub('Cw7', 'C*07:01', c)
+
+
 def add_special_column (dtf,pattern,new_pattern):
     column_patterns = ['Recip_First', 'Recip_Second', 'Donor_First', 'Donor_Second']
     for c_pat in column_patterns:
@@ -325,7 +353,7 @@ def main(args):
     data = parse_file(args)
     rows = data.shape[0]
     
-    rules = pd.read_excel((data_path + '/classII_rules.xlsx'))
+    rules = pd.read_excel((data_path + '/HLA_assimilation_table_new.xlsx'))
    
     # Run fill_split function for Recipient and Donor data
     print ("Filling empty split column cells")
