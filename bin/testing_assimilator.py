@@ -142,7 +142,7 @@ def cw7_special_cases(data):
                     pass
                 elif c == 'Cw7' and ((b1 == "B*44:02") or (b2 == "B*44:02")):
                     data.loc[row, c_col] = re.sub('Cw7', 'C*07:04', c)
-                elif c == to_replace and ((b1 in C0702_options) or (b2 in C0702_options)):
+                elif c == 'Cw7' and ((b1 in C0702_options) or (b2 in C0702_options)):
                     data.loc[row, c_col] = re.sub('Cw7', 'C*07:02', c)
                 else:
                     data.loc[row, c_col] = re.sub('Cw7', 'C*07:01', c)
@@ -203,7 +203,7 @@ def column_swap(data,options,patient):
 def add_sub_column(data,patient):
     """Adds column to store substitution codes"""
 
-    pattern = patient + "_First_DR_Broad"
+    pattern = patient + "_First_DR_Split"
     for column in data.columns:
         column_match = re.match(pattern,column)
         col_index = data.columns.get_loc(pattern)
