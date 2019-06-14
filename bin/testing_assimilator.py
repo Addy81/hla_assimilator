@@ -99,7 +99,7 @@ def c_assimilation(data,to_replace, general_rule, exc1, exc2=(None, None),exc3=(
         classI_log_writer = csv.writer(classI, delimiter = ' ', quotechar = '"', quoting = csv.QUOTE_MINIMAL)
         classI_log_writer.writerow(['Row', 'Reason', 'First', 'Second'])
 
-        for patient in ['Recip', 'Donor']:
+        for patient in ['Recip']:
             for variable in ['First', 'Second']:
                 rows = data.shape[0]
                 for row in range(rows):
@@ -124,7 +124,7 @@ def c_assimilation(data,to_replace, general_rule, exc1, exc2=(None, None),exc3=(
 
 def cw7_special_cases(data):
     """replaces Cw7 alleles based on the B allele correlation"""
-    for patient in ['Recip', 'Donor']:
+    for patient in ['Recip']:
         for variable in ['First', 'Second']:
             rows = data.shape[0]
             for row in range(rows):
@@ -149,7 +149,7 @@ def cw7_special_cases(data):
 
 
 def add_special_column (dtf,pattern,new_pattern):
-    column_patterns = ['Recip_First', 'Recip_Second', 'Donor_First', 'Donor_Second']
+    column_patterns = ['Recip_First', 'Recip_Second']
     for c_pat in column_patterns:
         match_pattern = "HR_" + c_pat + pattern
         
@@ -355,8 +355,8 @@ def main(args):
    
     # Run fill_split function for Recipient and Donor data
     print ("Filling empty split column cells")
-    fill_split(data,'Recip')
-    fill_split(data,'Donor')
+    #fill_split(data,'Recip')
+    #fill_split(data,'Donor')
 
    
     #Copies Split column and adds it next to the original with the prefix HR_ to be substituted
@@ -367,9 +367,9 @@ def main(args):
 
     print("Filling missing homozygous alleles")
     fill_hom(data,'Recip', 'C')
-    fill_hom(data,'Donor', 'C')
+    #fill_hom(data,'Donor', 'C')
     fill_hom(data,'Recip', 'DQ')
-    fill_hom(data,'Donor', 'DQ')
+    #fill_hom(data,'Donor', 'DQ')
 
     # Replace low-res alleles in the HR_ columns using the rule lists above
     print("Assimilating Class I alleles")
@@ -417,21 +417,21 @@ def main(args):
     # Swap columns around to allow for the one with only one option to be first
     print ("Assimilating Class II alleles.")
     column_swap(data,options,"Recip")
-    column_swap(data,options,"Donor")
+    #column_swap(data,options,"Donor")
 
     # USe it when we are back in normal dataset
 
     add_sub_column(data,"Recip")
-    add_sub_column(data,"Donor")
+    #add_sub_column(data,"Donor")
 
     assign_sub_codes(data,options,log_path,"Recip",classII_rules)
-    assign_sub_codes(data,options,log_path, "Donor",classII_rules)
+    #assign_sub_codes(data,options,log_path, "Donor",classII_rules)
 
     assimilate_classII(data,"Recip",classII_rules)
-    assimilate_classII(data,"Donor",classII_rules)
+    #assimilate_classII(data,"Donor",classII_rules)
 
     print("Tidying up your file.\n")
-    drop_columns= ['Recip_First_Sub', 'Recip_Second_Sub', 'Donor_First_Sub', 'Donor_Second_Sub']
+    drop_columns= ['Recip_First_Sub', 'Recip_Second_Sub']
 
     for column in drop_columns:
         del data[column]
