@@ -22,7 +22,7 @@ def parse_arguments():
 
 def parse_file(args):
     data_file = args.input
-    data = pd.read_excel(data_file, "Main data")
+    data = pd.read_excel(data_file)
 
     return data
 
@@ -81,8 +81,10 @@ def assimilate_classI(dtf):
     C_LR = ["Cw1","Cw2","Cw4","Cw9","Cw5","Cw6","Cw12","Cw14","Cw15","Cw17","Cw18",]
     C_HR = ["C*01:02","C*02:02","C*04:01","C*03:03","C*05:01","C*06:02","C*12:03","C*14:02","C*15:02","C*17:01","C*18:01",]
 
+    print (len(A_HR), len(B_HR), len(C_HR))
+    
     for column in dtf.columns:
-        print (column)
+        #print (column)
         column_check = re.match('HR_', column)
         if column_check:
             dtf[column].replace(to_replace = A_LR, value = A_HR, inplace = True)
@@ -99,7 +101,7 @@ def c_assimilation(data,to_replace, general_rule, exc1, exc2=(None, None),exc3=(
         classI_log_writer = csv.writer(classI, delimiter = ' ', quotechar = '"', quoting = csv.QUOTE_MINIMAL)
         classI_log_writer.writerow(['Row', 'Reason', 'First', 'Second'])
 
-        for patient in ['Recip', 'Donor']:
+        for patient in ['Recip']:
             for variable in ['First', 'Second']:
                 rows = data.shape[0]
                 for row in range(rows):
@@ -124,7 +126,7 @@ def c_assimilation(data,to_replace, general_rule, exc1, exc2=(None, None),exc3=(
 
 def cw7_special_cases(data):
     """replaces Cw7 alleles based on the B allele correlation"""
-    for patient in ['Recip', 'Donor']:
+    for patient in ['Recip']:
         for variable in ['First', 'Second']:
             rows = data.shape[0]
             for row in range(rows):
@@ -142,14 +144,14 @@ def cw7_special_cases(data):
                     pass
                 elif c == 'Cw7' and ((b1 == "B*44:02") or (b2 == "B*44:02")):
                     data.loc[row, c_col] = re.sub('Cw7', 'C*07:04', c)
-                elif c == to_replace and ((b1 in C0702_options) or (b2 in C0702_options)):
+                elif c == 'Cw7' and ((b1 in C0702_options) or (b2 in C0702_options)):
                     data.loc[row, c_col] = re.sub('Cw7', 'C*07:02', c)
                 else:
                     data.loc[row, c_col] = re.sub('Cw7', 'C*07:01', c)
 
 
 def add_special_column (dtf,pattern,new_pattern):
-    column_patterns = ['Recip_First', 'Recip_Second', 'Donor_First', 'Donor_Second']
+    column_patterns = ['Recip_First', 'Recip_Second']
     for c_pat in column_patterns:
         match_pattern = "HR_" + c_pat + pattern
         
@@ -203,7 +205,7 @@ def column_swap(data,options,patient):
 def add_sub_column(data,patient):
     """Adds column to store substitution codes"""
 
-    pattern = patient + "_First_DR_Broad"
+    pattern = patient + "_First_DR_Split"
     for column in data.columns:
         column_match = re.match(pattern,column)
         col_index = data.columns.get_loc(pattern)
@@ -222,6 +224,9 @@ def assign_sub_codes(data,options,log_path,patient,classII):
     dr_broads = ["DR5", "DR6", "DR2", "DR3"]
     rows = data.shape[0]
 
+    #print (options)
+    #print (classII)
+
     
     with open((log_path + "/" + patient + "_classII_log.csv"), "w+") as log_file:
         log_writer = csv.writer(log_file,delimiter=' ', quotechar='"', quoting=csv.QUOTE_MINIMAL)
@@ -235,6 +240,7 @@ def assign_sub_codes(data,options,log_path,patient,classII):
             first_sub = patient + "_First_Sub"
             second_sub = patient + "_Second_Sub"
             printed_options = str(R1) + "," + str(R2) + "," + str(Q1) + "," + str(Q2)
+            #print (printed_options)
 
             if (type(R1) != str) or (type(R2) != str):
                 log_writer.writerow([row,'DR alleles missing', R1, R2, Q1,Q2])
@@ -255,13 +261,13 @@ def assign_sub_codes(data,options,log_path,patient,classII):
                     while len(dq_options) > 0:
                         if dq_options[0] in options.get(R1):
                             for rule in classII:
-                                if rule[1] == R1 and rule[5] == Q1:
+                                if rule[2] == R1 and rule[6] == Q1:
                                     data.loc[row, first_sub] = "a" + str(rule[0])
                                     del dq_options[0]
                                     break
                             if dq_options[0] in options.get(R2):
                                 for rule in classII:
-                                    if rule[1] == R2 and rule[5] == Q2:
+                                    if rule[2] == R2 and rule[6] == Q2:
                                         data.loc[row, second_sub] = "a" + str(rule[0])
                                         del dq_options[0]
                             else:
@@ -269,13 +275,13 @@ def assign_sub_codes(data,options,log_path,patient,classII):
                                 break
                         elif dq_options[1] in options.get(R1):
                             for rule in classII:
-                                if rule[1] == R1 and rule[5] == Q2:
+                                if rule[2] == R1 and rule[6] == Q2:
                                     data.loc[row, first_sub] = "b" + str(rule[0])
                                     del dq_options[1]
                                     break
                             if dq_options[0] in options.get(R2):
                                 for rule in classII:
-                                    if rule[1] == R2 and rule[5] == Q1:
+                                    if rule[2] == R2 and rule[6] == Q1:
                                         data.loc[row, second_sub] = "b" + str(rule[0])
                                         del dq_options[0]
                             else:
@@ -306,29 +312,29 @@ def assimilate_classII(data,patient,classII):
             code2 = int(code2.lstrip("a"))
             for rule in classII:
                 if rule[0] == code1:
-                    data.loc[row, "HR_" + patient + "_First_DR_Split"] = rule[2]
-                    data.loc[row, "HR_" + patient + "_First_DRB3/4/5"] = rule[4]
-                    data.loc[row, "HR_" + patient + "_First_DQ_Split"] = rule[6]
-                    data.loc[row, "HR_" + patient + "_First_DQA"] = rule[7]
+                    data.loc[row, "HR_" + patient + "_First_DR_Split"] = rule[3]
+                    data.loc[row, "HR_" + patient + "_First_DRB3/4/5"] = rule[5]
+                    data.loc[row, "HR_" + patient + "_First_DQ_Split"] = rule[7]
+                    data.loc[row, "HR_" + patient + "_First_DQA"] = rule[8]
                 if rule[0] == code2:
-                    data.loc[row, "HR_" + patient + "_Second_DR_Split"] = rule[2]
-                    data.loc[row, "HR_" + patient + "_Second_DRB3/4/5"] = rule[4]
-                    data.loc[row, "HR_" + patient + "_Second_DQ_Split"] = rule[6]
-                    data.loc[row, "HR_" + patient + "_Second_DQA"] = rule[7]
+                    data.loc[row, "HR_" + patient + "_Second_DR_Split"] = rule[3]
+                    data.loc[row, "HR_" + patient + "_Second_DRB3/4/5"] = rule[5]
+                    data.loc[row, "HR_" + patient + "_Second_DQ_Split"] = rule[7]
+                    data.loc[row, "HR_" + patient + "_Second_DQA"] = rule[8]
         elif code1.startswith("b"):
             code1 = int(code1.lstrip("b"))
             code2 = int(code2.lstrip("b"))
             for rule in classII:
                 if rule[0] == code1:
-                    data.loc[row, "HR_" + patient + "_First_DR_Split"] = rule[2]
-                    data.loc[row, "HR_" + patient + "_First_DRB3/4/5"] = rule[4]
-                    data.loc[row, "HR_" + patient + "_Second_DQ_Split"] = rule[6]
-                    data.loc[row, "HR_" + patient + "_Second_DQA"] = rule[7]
+                    data.loc[row, "HR_" + patient + "_First_DR_Split"] = rule[3]
+                    data.loc[row, "HR_" + patient + "_First_DRB3/4/5"] = rule[5]
+                    data.loc[row, "HR_" + patient + "_Second_DQ_Split"] = rule[7]
+                    data.loc[row, "HR_" + patient + "_Second_DQA"] = rule[8]
                 if rule[0] == code2:
-                    data.loc[row, "HR_" + patient + "_Second_DR_Split"] = rule[2]
-                    data.loc[row, "HR_" + patient + "_Second_DRB3/4/5"] = rule[4]
-                    data.loc[row, "HR_" + patient + "_First_DQ_Split"] = rule[6]
-                    data.loc[row, "HR_" + patient + "_First_DQA"] = rule[7]
+                    data.loc[row, "HR_" + patient + "_Second_DR_Split"] = rule[3]
+                    data.loc[row, "HR_" + patient + "_Second_DRB3/4/5"] = rule[5]
+                    data.loc[row, "HR_" + patient + "_First_DQ_Split"] = rule[7]
+                    data.loc[row, "HR_" + patient + "_First_DQA"] = rule[8]
 
 
 def main(args):
@@ -351,12 +357,12 @@ def main(args):
     data = parse_file(args)
     rows = data.shape[0]
     
-    rules = pd.read_excel((data_path + '/HLA_assimilation_table_new.xlsx'), sheet_name="classII")
+    rules = pd.read_excel((data_path + '/classII_June19.xlsx'), sheet_name="classII")
    
     # Run fill_split function for Recipient and Donor data
     print ("Filling empty split column cells")
-    fill_split(data,'Recip')
-    fill_split(data,'Donor')
+    #fill_split(data,'Recip')
+    #fill_split(data,'Donor')
 
    
     #Copies Split column and adds it next to the original with the prefix HR_ to be substituted
@@ -367,9 +373,9 @@ def main(args):
 
     print("Filling missing homozygous alleles")
     fill_hom(data,'Recip', 'C')
-    fill_hom(data,'Donor', 'C')
+    #fill_hom(data,'Donor', 'C')
     fill_hom(data,'Recip', 'DQ')
-    fill_hom(data,'Donor', 'DQ')
+    #fill_hom(data,'Donor', 'DQ')
 
     # Replace low-res alleles in the HR_ columns using the rule lists above
     print("Assimilating Class I alleles")
@@ -399,39 +405,39 @@ def main(args):
     options = {
         "DR1": ["DQ5","DQ7"],
         "DR103": ["DQ5", "DQ7"],
-        "DR4": ["DQ2","DQ7", "DQ8", "DQ4"],
-        "DR7": ["DQ2", "DQ9","DQ5","DQ7"],
-        "DR8": ["DQ4", "DQ7", "DQ6","DQ2","DQ8"],
+        "DR4": ["DQ2", "DQ7", "DQ8", "DQ4"],
+        "DR7": ["DQ2", "DQ9", "DQ5", "DQ7"],
+        "DR8": ["DQ4", "DQ7", "DQ6", "DQ2", "DQ8"],
         "DR9": ["DQ2", "DQ9"],
-        "DR10": ["DQ5","DQ6"],
-        "DR11": ["DQ2","DQ5","DQ6","DQ7","DQ8"],
+        "DR10": ["DQ5", "DQ6"],
+        "DR11": ["DQ2", "DQ5", "DQ6", "DQ7", "DQ8"],
         "DR12": ["DQ5", "DQ7"],
-        "DR13": ["DQ2", "DQ6", "DQ7","DQ5"],
-        "DR14": ["DQ5","DQ6", "DQ7"],
-        "DR15": ["DQ6", "DQ5","DQ2","DQ7"],
-        "DR16": ["DQ5","DQ7"],
-        "DR17": ["DQ2","DQ6"],
+        "DR13": ["DQ2", "DQ6", "DQ7", "DQ5"],
+        "DR14": ["DQ5", "DQ6", "DQ7"],
+        "DR15": ["DQ6", "DQ5", "DQ2", "DQ7"],
+        "DR16": ["DQ5", "DQ7"],
+        "DR17": ["DQ2", "DQ6"],
         "DR18": ["DQ4"]
     }
 
     # Swap columns around to allow for the one with only one option to be first
-    print ("Assimilating Class II alleles.")
+    print ("Swapping columns.")
     column_swap(data,options,"Recip")
-    column_swap(data,options,"Donor")
+    #column_swap(data,options,"Donor")
 
     # USe it when we are back in normal dataset
-
+    print("Adding sub columns .")
     add_sub_column(data,"Recip")
-    add_sub_column(data,"Donor")
-
+    #add_sub_column(data,"Donor")
+    print("Assigning substitution codes .")
     assign_sub_codes(data,options,log_path,"Recip",classII_rules)
-    assign_sub_codes(data,options,log_path, "Donor",classII_rules)
-
+    #assign_sub_codes(data,options,log_path, "Donor",classII_rules)
+    print ("Assimilating Class II alleles.")
     assimilate_classII(data,"Recip",classII_rules)
-    assimilate_classII(data,"Donor",classII_rules)
+    #assimilate_classII(data,"Donor",classII_rules)
 
     print("Tidying up your file.\n")
-    drop_columns= ['Recip_First_Sub', 'Recip_Second_Sub', 'Donor_First_Sub', 'Donor_Second_Sub']
+    drop_columns= ['Recip_First_Sub', 'Recip_Second_Sub']
 
     for column in drop_columns:
         del data[column]
