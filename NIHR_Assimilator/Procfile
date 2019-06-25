@@ -1,3 +1,0 @@
-web:  python manage.py runserver login01.ctrulab.uk:8000
-worker: celery -A NIHR_Assimilator worker -c 1 --beat -l info
-EOM

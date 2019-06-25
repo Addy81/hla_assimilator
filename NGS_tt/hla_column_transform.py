@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+ #!/usr/bin/python3
 #
 #
 #
@@ -35,6 +35,9 @@ for r in range(rn):
         types.append(data.loc[r,'Component'])
     else:
         pass
+
+print (patients)
+print (len(types),types)
 
 patient_types = {}
 for patient in patients:
