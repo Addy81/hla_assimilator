@@ -6,7 +6,24 @@ Our tool manipulates low resolution data and transforms them into high resolutio
 
 ## Getting Started
 
-The only thing you need to run the tool is the assimilator.py script found in bin/.
+The only thing you need to run the tool is the assimilator.py script found in bin/
+
+```
+python bin/assimilator.py -h
+usage: assimilator.py [-h] [-o OUTPUT] input
+
+Assimilate low resolution HLA type data.
+
+positional arguments:
+  input                 Input excel .xlsx to be analysed
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -o OUTPUT, --output OUTPUT
+                        Desired output name filename to be
+
+```
+
 
 ### Prerequisites
 
@@ -19,51 +36,10 @@ $ pip install pandas
 
 ### Required Input
 
-The script recognises and requires the following header:
+The script works on xlsx speadsheets, it recognises specified columns based on the Addenbrooke's Tissue Typing Deparment NGS output, manipulates existing data, adds it to new columns and outputs an updated spreadsheet.
 
-Recip_First_A_Broad
-Recip_First_A_Split
-Recip_Second_A_Broad
-Recip_Second_A_Split
-Recip_First_B_Broad
-Recip_First_B_Split
-Recip_Second_B_Broad
-Recip_Second_B_Split
-Recip_First_C_Broad
-Recip_First_C_Split
-Recip_Second_C_Broad
-Recip_Second_C_Split
-Recip_First_DR_Broad
-Recip_First_DR_Split
-Recip_Second_DR_Broad
-Recip_Second_DR_Split
-Recip_First_DQ_Broad
-Recip_First_DQ_Split
-Recip_Second_DQ_Broad
-Recip_Second_DQ_Split
- 
- 
-Donor_First_A_Broad
-Donor_First_A_Split
-Donor_Second_A_Broad
-Donor_Second_A_Split
-Donor_First_B_Broad
-Donor_First_B_Split
-Donor_Second_B_Broad
-Donor_Second_B_Split
-Donor_First_C_Broad
-Donor_First_C_Split
-Donor_Second_C_Broad
-Donor_Second_C_Split
-Donor_First_Sub
-Donor_First_DR_Broad
-Donor_First_DR_Split
-Donor_Second_DR_Broad
-Donor_Second_DR_Split
-Donor_First_DQ_Broad
-Donor_First_DQ_Split
-Donor_Second_DQ_Broad
-Donor_Second_DQ_Split
+
+If you want to try it, the script requires the following header: [header.txt](header.txt)
 
 
 
