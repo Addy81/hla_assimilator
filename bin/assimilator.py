@@ -22,7 +22,7 @@ def parse_arguments():
 
 def parse_file(args):
     data_file = args.input
-    data = pd.read_excel(data_file, "Main data")
+    data = pd.read_excel(data_file)
 
     return data
 
@@ -82,7 +82,6 @@ def assimilate_classI(dtf):
     C_HR = ["C*01:02","C*02:02","C*04:01","C*03:03","C*05:01","C*06:02","C*12:03","C*14:02","C*15:02","C*17:01","C*18:01",]
 
     for column in dtf.columns:
-        print (column)
         column_check = re.match('HR_', column)
         if column_check:
             dtf[column].replace(to_replace = A_LR, value = A_HR, inplace = True)
@@ -142,7 +141,7 @@ def cw7_special_cases(data):
                     pass
                 elif c == 'Cw7' and ((b1 == "B*44:02") or (b2 == "B*44:02")):
                     data.loc[row, c_col] = re.sub('Cw7', 'C*07:04', c)
-                elif c == to_replace and ((b1 in C0702_options) or (b2 in C0702_options)):
+                elif c == 'Cw7' and ((b1 in C0702_options) or (b2 in C0702_options)):
                     data.loc[row, c_col] = re.sub('Cw7', 'C*07:02', c)
                 else:
                     data.loc[row, c_col] = re.sub('Cw7', 'C*07:01', c)
@@ -351,7 +350,7 @@ def main(args):
     data = parse_file(args)
     rows = data.shape[0]
     
-    rules = pd.read_excel((data_path + '/HLA_assimilation_table_new.xlsx'), sheet_name="classII")
+    rules = pd.read_excel((data_path + '/classII_June19.xlsx'), sheet_name="classII")
    
     # Run fill_split function for Recipient and Donor data
     print ("Filling empty split column cells")
@@ -366,10 +365,13 @@ def main(args):
     # when there's the first Cw present - assume homozygous so fill the Second Split column
 
     print("Filling missing homozygous alleles")
-    fill_hom(data,'Recip', 'C')
-    fill_hom(data,'Donor', 'C')
-    fill_hom(data,'Recip', 'DQ')
-    fill_hom(data,'Donor', 'DQ')
+   
+    genes = ['A', 'B','C','DQ','DR']
+
+    for gene in genes:
+        fill_hom(data,'Recip', gene)
+        fill_hom(data,'Donor', gene)
+    
 
     # Replace low-res alleles in the HR_ columns using the rule lists above
     print("Assimilating Class I alleles")
