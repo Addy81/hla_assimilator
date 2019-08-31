@@ -11,6 +11,9 @@ import sys,os
 import numpy as np
 import csv
 import argparse
+from datetime import datetime
+
+
 
 def parse_arguments():
     parser = argparse.ArgumentParser( description='Assimilate low resolution HLA type data.')
@@ -121,6 +124,49 @@ def c_assimilation(data,to_replace, general_rule, exc1, exc2=(None, None),exc3=(
                         classI_log_writer.writerow([row, "C substituted with general rule", data.loc[row,c_col]])
                         data.loc[row, c_col] = re.sub(to_replace, general_rule, c)
 
+
+def DQ3_replacement(data):
+
+    dq_reps = {
+        "DR9":"DQ9",
+        "DR8":"DQ8",
+        "DR1":"DQ7",
+        "DR7":"DQ9",
+        "DR11":"DQ7",
+        "DR12":"DQ7",
+        "DR13":"DQ7",
+        "DR14":"DQ7",
+        "DR15":"DQ7",
+        "DR16":"DQ7"
+    }
+    
+    for patient in ['Recip','Donor']:
+        for variable in ['First','Second']:
+            rows = data.shape[0]
+
+            for row in range(rows):
+                DQ_column = "HR_" + patient + '_' + variable + '_DQ_Split'
+                DR1_col = "HR_" + patient + '_First_DR_Split'
+                DR2_col = "HR_" + patient + '_Second_DR_Split'
+                dq = data.loc[row,DQ_column]
+                dr1 = data.iloc[row][DR1_col]
+                dr2 = data.iloc[row][DR2_col]
+                if pd.isnull(data.loc[row,DQ_column]):
+                    pass
+                elif dq == 'DQ3':
+                    if (dr1 in dq_reps.keys()):
+                        print (row,'dr1',dr1)
+
+                        data.loc[row,DQ_column] = re.sub('DQ3',dq_reps[dr1],dq)
+                        print (data.loc[row,DQ_column])
+                    elif (dr2 in dq_reps.keys()):
+                        print (row,'dr2',dr2)
+                        data.loc[row,DQ_column] = re.sub('DQ3',dq_reps[dr2],dq)
+                        print (data.loc[row,DQ_column])
+
+
+
+
 def cw7_special_cases(data):
     """replaces Cw7 alleles based on the B allele correlation"""
     for patient in ['Recip', 'Donor']:
@@ -220,9 +266,11 @@ def assign_sub_codes(data,options,log_path,patient,classII):
     dq_broads = ["DQ1", "DQ3"]
     dr_broads = ["DR5", "DR6", "DR2", "DR3"]
     rows = data.shape[0]
-
+    now = (datetime.now()).isoformat()[:10]
     
-    with open((log_path + "/" + patient + "_classII_log.csv"), "w+") as log_file:
+    logfilename = ''.join([log_path,"/",now,"_",patient,"_classII_log.csv"])
+    
+    with open(logfilename, "w+") as log_file:
         log_writer = csv.writer(log_file,delimiter=' ', quotechar='"', quoting=csv.QUOTE_MINIMAL)
         log_writer.writerow(['Row','Reason','First_DR','Second_DR','First_DQ','Second_DQ'])
 
@@ -336,12 +384,14 @@ def main(args):
     parent = os.path.dirname(dir_path)
     data_path = os.path.join(parent,'data')
     log_path = os.path.join(data_path,'logs')
-
     results = os.path.join(parent,'results')
     output = args.output
+    now = (datetime.now()).isoformat()[:10]
+
     
     if output is None:
-        output_file_name = os.path.basename(data_file).replace(".xlsx", "_assimilated.xlsx")
+        suffix = "".join([now,"_assimilated.xlsx"])
+        output_file_name = os.path.basename(args.input).replace(".xlsx", suffix)
     else:
         output_file_name = output
     
@@ -394,6 +444,10 @@ def main(args):
 
     add_special_column(data,'_DR_Split','_DRB3/4/5')     
     add_special_column(data,'_DQ_Split','_DQA')  
+    
+    # Swapping the remaining DQ broad
+    print ("DQ swap")
+    DQ3_replacement(data)
     
     # create a list containing all class II rules
     classII_rules = create_rules(rules)
