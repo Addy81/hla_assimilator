@@ -19,6 +19,7 @@ def parse_arguments():
     parser = argparse.ArgumentParser( description='Assimilate low resolution HLA type data.')
     parser.add_argument('input', help='Input excel .xlsx to be analysed')
     parser.add_argument('-o','--output', help='Desired output name filename to be ')
+    parser.add_argument('-nb','--nobroads', action='store_true', help='If there are no broad columns, it skips the first step')
     arguments = parser.parse_args()
 
     return arguments
@@ -248,7 +249,7 @@ def column_swap(data,options,patient):
 def add_sub_column(data,patient):
     """Adds column to store substitution codes"""
 
-    pattern = patient + "_First_DR_Broad"
+    pattern = patient + "_First_DR_Split"
     for column in data.columns:
         column_match = re.match(pattern,column)
         col_index = data.columns.get_loc(pattern)
@@ -403,9 +404,12 @@ def main(args):
     rules = pd.read_excel((data_path + '/classII_June19.xlsx'), sheet_name="classII")
    
     # Run fill_split function for Recipient and Donor data
-    print ("Filling empty split column cells")
-    fill_split(data,'Recip')
-    fill_split(data,'Donor')
+    if args.nobroads:
+        pass
+    else:
+        print ("Filling empty split column cells")
+        fill_split(data,'Recip')
+        fill_split(data,'Donor')
 
    
     #Copies Split column and adds it next to the original with the prefix HR_ to be substituted
