@@ -215,7 +215,11 @@ def create_rules(rules):
         row_sublist = [count]
         count += 1
         for column in rules.columns:
-            row_sublist.append(rules.loc[row][column])
+            cell_value = rules.loc[row][column]
+            if isinstance(cell_value, float):
+                row_sublist.append(cell_value)
+            else:
+                row_sublist.append(cell_value.strip())
         classII.append(row_sublist)
     
     return classII
@@ -276,13 +280,15 @@ def assign_sub_codes(data,options,log_path,patient,classII):
         log_writer.writerow(['Row','Reason','First_DR','Second_DR','First_DQ','Second_DQ'])
 
         for row in range(rows):
-            R1 = data.loc[row, ("HR_" + patient + "_First_DR_Split")]
-            R2 = data.loc[row, "HR_" + patient + "_Second_DR_Split"]
-            Q1 = data.loc[row, "HR_" + patient + "_First_DQ_Split"]
-            Q2 = data.loc[row, "HR_" + patient + "_Second_DQ_Split"]
+            R1 = data.loc[row, ("HR_" + patient + "_First_DR_Split")].strip()
+            R2 = data.loc[row, "HR_" + patient + "_Second_DR_Split"].strip()
+            Q1 = data.loc[row, "HR_" + patient + "_First_DQ_Split"].strip()
+            Q2 = data.loc[row, "HR_" + patient + "_Second_DQ_Split"].strip()
             first_sub = patient + "_First_Sub"
             second_sub = patient + "_Second_Sub"
             printed_options = str(R1) + "," + str(R2) + "," + str(Q1) + "," + str(Q2)
+
+            print(printed_options)
 
             if (type(R1) != str) or (type(R2) != str):
                 log_writer.writerow([row,'DR alleles missing', R1, R2, Q1,Q2])
@@ -299,19 +305,25 @@ def assign_sub_codes(data,options,log_path,patient,classII):
                     continue
                 else:
                     dq_options = [Q1, Q2]
+                    print(dq_options)
 
                     while len(dq_options) > 0:
                         if dq_options[0] in options.get(R1):
                             for rule in classII:
                                 if rule[1] == R1 and rule[5] == Q1:
+                                    print("R1",R1, "R2",R2)
                                     data.loc[row, first_sub] = "a" + str(rule[0])
+                                    print ("a",rule[0])
                                     del dq_options[0]
                                     break
                             if dq_options[0] in options.get(R2):
                                 for rule in classII:
                                     if rule[1] == R2 and rule[5] == Q2:
                                         data.loc[row, second_sub] = "a" + str(rule[0])
+                                        print("a",rule[0], "staff")
                                         del dq_options[0]
+                                else:
+                                    print()
                             else:
                                 log_writer.writerow([row, "Options don't work (1)", R1, R2, Q1, Q2])
                                 break
@@ -319,12 +331,14 @@ def assign_sub_codes(data,options,log_path,patient,classII):
                             for rule in classII:
                                 if rule[1] == R1 and rule[5] == Q2:
                                     data.loc[row, first_sub] = "b" + str(rule[0])
+                                    print("b", rule[0])
                                     del dq_options[1]
                                     break
                             if dq_options[0] in options.get(R2):
                                 for rule in classII:
                                     if rule[1] == R2 and rule[5] == Q1:
                                         data.loc[row, second_sub] = "b" + str(rule[0])
+                                        print("b", rule[0])
                                         del dq_options[0]
                             else:
                                 log_writer.writerow([row, "Options don't work(2)", R1, R2, Q1, Q2])
@@ -401,7 +415,7 @@ def main(args):
     data = parse_file(args)
     rows = data.shape[0]
     
-    rules = pd.read_excel((data_path + '/classII_June19.xlsx'), sheet_name="classII")
+    rules = pd.read_excel((data_path + '/HLA_assimilation_table_March2020.xlsx'), sheet_name="classII")
    
     # Run fill_split function for Recipient and Donor data
     if args.nobroads:
@@ -466,11 +480,11 @@ def main(args):
         "DR10": ["DQ5","DQ6"],
         "DR11": ["DQ2","DQ5","DQ6","DQ7","DQ8"],
         "DR12": ["DQ5", "DQ7"],
-        "DR13": ["DQ2", "DQ6", "DQ7","DQ5"],
+        "DR13": ["DQ2", "DQ6", "DQ7","DQ5","DQ9"],
         "DR14": ["DQ5","DQ6", "DQ7"],
         "DR15": ["DQ6", "DQ5","DQ2","DQ7"],
         "DR16": ["DQ5","DQ7"],
-        "DR17": ["DQ2","DQ6"],
+        "DR17": ["DQ2","DQ6","DQ7"],
         "DR18": ["DQ4"]
     }
 
@@ -479,15 +493,21 @@ def main(args):
     column_swap(data,options,"Recip")
     column_swap(data,options,"Donor")
 
+    print ("Adding Substitution Columns")
+
     # USe it when we are back in normal dataset
 
     add_sub_column(data,"Recip")
     add_sub_column(data,"Donor")
 
+    print ("Assigning Substitution Codes")
+
     assign_sub_codes(data,options,log_path,"Recip",classII_rules)
     assign_sub_codes(data,options,log_path, "Donor",classII_rules)
 
+    print("Assimilation Recipient Class II Alleles")
     assimilate_classII(data,"Recip",classII_rules)
+    print("Assimilation Donor Class II Alleles")
     assimilate_classII(data,"Donor",classII_rules)
 
     print("Tidying up your file.\n")
