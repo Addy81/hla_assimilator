@@ -166,6 +166,61 @@ def DQ3_replacement(data):
                         print (data.loc[row,DQ_column])
 
 
+def DQ_replacement(data):
+    dq3_reps = {
+        "DR9": "DQ9",
+        "DR8": "DQ8",
+        "DR1": "DQ7",
+        "DR7": "DQ9",
+        "DR11": "DQ7",
+        "DR12": "DQ7",
+        "DR13": "DQ7",
+        "DR14": "DQ7",
+        "DR15": "DQ7",
+        "DR16": "DQ7"
+    }
+
+    dq1_reps = {
+        "DR16" : "DQ5",
+        "DR13" : "DQ6",
+        "DR15" : "DQ6",
+        "DR1"  : "DQ5"
+
+    }
+
+    for patient in ['Recip', 'Donor']:
+        for variable in ['First', 'Second']:
+            rows = data.shape[0]
+
+            for row in range(rows):
+                DQ_column = "HR_" + patient + '_' + variable + '_DQ_Split'
+                DR1_col = "HR_" + patient + '_First_DR_Split'
+                DR2_col = "HR_" + patient + '_Second_DR_Split'
+                dq = data.loc[row, DQ_column]
+                dr1 = data.iloc[row][DR1_col]
+                dr2 = data.iloc[row][DR2_col]
+                if pd.isnull(data.loc[row, DQ_column]):
+                    pass
+                elif dq == 'DQ3':
+                    if (dr1 in dq3_reps.keys()):
+                        print(row, 'dr1', dr1)
+
+                        data.loc[row, DQ_column] = re.sub('DQ3', dq3_reps[dr1], dq)
+                        print(data.loc[row, DQ_column])
+                    elif (dr2 in dq3_reps.keys()):
+                        print(row, 'dr2', dr2)
+                        data.loc[row, DQ_column] = re.sub('DQ3', dq3_reps[dr2], dq)
+                        print(data.loc[row, DQ_column])
+                elif dq == 'DQ1':
+                    if (dr1 in dq1_reps.keys()):
+                        print(row, 'dr1', dr1)
+
+                        data.loc[row, DQ_column] = re.sub('DQ1', dq1_reps[dr1], dq)
+                        print(data.loc[row, DQ_column])
+                    elif (dr2 in dq1_reps.keys()):
+                        print(row, 'dr2', dr2)
+                        data.loc[row, DQ_column] = re.sub('DQ1', dq1_reps[dr2], dq)
+                        print(data.loc[row, DQ_column])
 
 
 def cw7_special_cases(data):
@@ -188,6 +243,8 @@ def cw7_special_cases(data):
                     pass
                 elif c == 'Cw7' and ((b1 == "B*44:02") or (b2 == "B*44:02")):
                     data.loc[row, c_col] = re.sub('Cw7', 'C*07:04', c)
+                elif c == 'Cw7':
+                    pass
                 elif c == 'Cw7' and ((b1 in C0702_options) or (b2 in C0702_options)):
                     data.loc[row, c_col] = re.sub('Cw7', 'C*07:02', c)
                 else:
