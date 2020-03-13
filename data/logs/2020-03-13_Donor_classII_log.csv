@@ -1,0 +1,53 @@
+Row Reason First_DR Second_DR First_DQ Second_DQ
+14 "Dq alleles splits are missing" DR14 DR7 nan nan
+43 "Dq alleles splits are missing" DR1 DR17 DQ1 DQ2
+88 "Dq alleles splits are missing" DR1 DR10 DQ1 DQ1
+114 "Dq alleles splits are missing" DR4 DR14 nan nan
+120 "Dq alleles splits are missing" DR17 DR4 nan nan
+141 "Dq alleles splits are missing" DR15 DR13 nan nan
+145 "Dq alleles splits are missing" DR11 DR7 nan nan
+163 "Dq alleles splits are missing" DR4 DR13 nan nan
+164 "Dq alleles splits are missing" DR7 DR7 nan nan
+166 "Options don't work (1)" DR1 DR18 DQ5 DQ2
+172 "Options don't work (1)" DR17 DR13 DQ2 DQ8
+199 "Dq alleles splits are missing" DR15 DR12 nan nan
+227 "Dq alleles splits are missing" DR103 DR4 nan nan
+255 "Dq alleles splits are missing" DR1 DR16 DQ1 DQ1
+276 "Dq alleles splits are missing" DR15 DR7 nan nan
+284 "Options don't work(3)" DR9 DR1 DQ5 DQ7
+314 "Dq alleles splits are missing" DR1 DR15 nan nan
+359 "Dq alleles splits are missing" DR1 DR17 nan nan
+371 "Dq alleles splits are missing" DR15 DR13 nan nan
+372 "Dq alleles splits are missing" DR4 DR13 nan nan
+407 "Dq alleles splits are missing" DR17 DR13 DQ1 DQ2
+437 "Dq alleles splits are missing" DR4 DR7 nan nan
+447 "Dq alleles splits are missing" DR15 DR4 DQ1 DQ7
+457 "Dq alleles splits are missing" DR17 DR4 DQ2 DQ3
+475 "Options don't work (1)" DR17 DR4 DQ2 DQ9
+563 "Options don't work(3)" DR1 DR17 DQ2 DQ2
+564 "Dq alleles splits are missing" DR1 DR4 nan nan
+587 "Dq alleles splits are missing" DR1 DR4 nan nan
+658 "Dq alleles splits are missing" DR4 DR12 nan nan
+684 "Dq alleles splits are missing" DR13 DR7 nan nan
+710 "DR alleles splits are missing" DR1404 DR7 DQ5 DQ2
+711 "DR alleles splits are missing" DR1404 DR7 DQ5 DQ2
+819 "Dq alleles splits are missing" DR17 DR7 nan nan
+850 "Dq alleles splits are missing" DR4 DR4 DQ3 DQ3
+1074 "Dq alleles splits are missing" DR103 DR17 nan nan
+1247 "Dq alleles splits are missing" DR15 DR11 DQ1 DQ7
+1283 "Dq alleles splits are missing" DR103 DR15 DQ1 DQ1
+1297 "Dq alleles splits are missing" DR15 DR7 DQ1 DQ2
+1339 "Dq alleles splits are missing" DR4 DR4 DQ3 DQ3
+1397 "Dq alleles splits are missing" DR4 DR4 DQ3 DQ3
+1399 "Options don't work(3)" DR4 DR7 DQ9 DQ9
+1436 "Dq alleles splits are missing" DR13 DR7 DQ1 DQ9
+1490 "Options don't work(3)" DR4 DR7 DQ9 DQ9
+1563 "Dq alleles splits are missing" DR17 DR4 DQ2 DQ3
+1829 "Dq alleles splits are missing" DR1 DR13 nan nan
+1896 "Dq alleles splits are missing" DR4 DR9 nan nan
+1939 "Dq alleles splits are missing" DR12 DR7 nan nan
+2317 "Options don't work (1)" DR14 DR7 DQ5 DQ8
+2456 "Options don't work (1)" DR13 DR14 DQ5 DQ8
+2579 "Options don't work(3)" DR1 DR17 DQ6 DQ2
+2717 "DR alleles splits are missing" DR13 DR1404 DQ5 DQ6
+2864 "DR alleles splits are missing" nan nan nan nan

@@ -1,0 +1,4 @@
+Row Reason First_DR Second_DR First_DQ Second_DQ
+0 "Dq alleles splits are missing" DR1 DR1 DQ1 DQ1
+6 "Dq alleles splits are missing" DR15 DR17 DQ1 DQ2
+8 "Dq alleles splits are missing" DR13 DR7 DQ1 DQ9
